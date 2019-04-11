@@ -1,0 +1,629 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/solid.js"></script>
+    <script defer src="js/fontawesome.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/d3.min.js"></script>
+    <script src="js/d3plus.full.js"></script>
+    <script src="js/d3-queue.min.js"></script>
+    <script lang="javascript" src="js/xlsx.full.min.js"></script>
+    <script src="js/FileSaver.min.js"></script>
+</head>
+<body style="background-color:#FFFFFF;!important;">
+<div class="wrapper">
+    <nav id="sidebar">
+        <div ng-app="" ng-init='institutions=
+        [{ "dvAlias": "4tu", "name": "4TU.Center for Research Data", "logo":"https://dataverse.nl/logos/674/4TU-logo.jpg" },
+        { "dvAlias": "dans", "name": "DANS", "logo":"https://dataverse.nl/logos/686/dans.png" },
+        { "dvAlias": "HU", "name": "Hogeschool Utrecht", "logo":"https://dataverse.nl/logos/10417/HU%20Logo%204.jpg" },
+        { "dvAlias": "leidenuniversity", "name": "Leiden University", "logo":"https://dataverse.nl/logos/11481/UL%20-%20Algemeen%20-%20RGB-Kleur.jpg" },
+        { "dvAlias": "maastricht", "name": "Maastricht University", "logo":"https://dataverse.nl/logos/679/UM%20driehoeken_74x100.png" },
+        { "dvAlias": "niooknaw", "name": "NIOO-KNAW", "logo":"https://dataverse.nl/logos/677/NIOOlogo.png" },
+        { "dvAlias": "PTHU", "name": "Protestantse Theologische Universiteit", "logo":"https://dataverse.nl/logos/240/PThU.png" },
+        { "dvAlias": "tiu", "name": "Tilburg University", "logo":"https://dataverse.nl/logos/8592/265c6547-c51c-4640-9e98-6d5aa1b29e21_TilbUni_H_logo_slogan_bb.gif" },
+        { "dvAlias": "tilburg_nondsa", "name": "Tilburg University - Workspace", "logo":"https://dataverse.nl/logos/678/cfab92f7-3db2-4faa-b22e-37468f5d1467_TilbUni_logo_bb.gif" },
+        { "dvAlias": "groningen", "name": "University of Groningen", "logo":"https://dataverse.nl/logos/751/RUGlogo.png" },
+        { "dvAlias": "UU", "name": "Utrecht University", "logo":"https://dataverse.nl/logos/695/UU_logo_EN_CMYK.png" },
+        { "dvAlias": "vuamsterdam", "name": "Vrije Universiteit Amsterdam", "logo":"https://dataverse.nl/logos/672/VUlogo_NL.png" },
+        { "dvAlias": "trimbos", "name": "Trimbos Instituut", "logo":"https://cf.e-vision.nl/static/trimbos/trimbos.nl/media/images/logo-timbos-wit.png" },
+        { "dvAlias": "nioz", "name": "NIOZ", "logo":"https://www.nioz.nl/application/files/2814/7740/6142/nioz-logo.svg" }]
+        '>
+            <ul class="list-unstyled components" style="font-size:0.9em;!important">
+                <a href="https://dataverse.nl"><center><img style="padding-bottom: 20px;" src="https://dataverse.nl/resources/images/DataversNL-logo.png" height="60%" width="60%"></center></a>
+                <li>
+                    <a href="#/">All Institutions</a>
+                </li>
+                <li ng-repeat="institution in institutions">
+                    <a href="#/{{ institution.dvAlias }}" >
+                        {{ institution.name }}
+                    </a>
+                </li>
+                <div ng-repeat="institution in institutions" ng-include="">
+                </div>
+            </ul>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <button id="button-a" class="btn btn-primary btn-lg btn-block">Download Excel</button>
+        <a class="btn btn-primary btn-lg btn-block" href="dataverse_tree.html?alias=root&name=DataverseNL" role="button">Dataverse hierarchy</a>
+    </nav>
+    <div id="content">
+        <div ng-view></div>
+    </div>
+    <script type="text/ng-template" id="pages/home.html">
+        <h2 align="center">{{message}}</h2>
+        <div class="graphcenter" id="dataversesAllGraph-root"></div>
+        <div class="graphcenter" id="dataversesByCategoryGraph-root"></div>
+        <div class="graphcenter" id="dataversesAddedOverTimeGraph-root"></div>
+        <div class="graphcenter" id="datasetsAllGraph-root"></div>
+        <div class="graphcenter" id="datasetsAddedOverTimeGraph-root"></div>
+        <div class="graphcenter" id="datasetsSubjectGraph-root"></div>
+        <div class="graphcenter" id="filesAddedGraph-root"></div>
+        <div class="graphcenter" id="filesDownloadGraph-root"></div>
+    </script>
+    <script type="text/ng-template" id="pages/4tu.html">
+        <h2 align="center">{{message}}</h2>
+        <div class="graphcenter" id="dataversesAllGraph-4tu"></div>
+        <div class="graphcenter" id="dataversesByCategoryGraph-4tu"></div>
+        <div class="graphcenter" id="dataversesAddedOverTimeGraph-4tu"></div>
+        <div class="graphcenter" id="datasetsAllGraph-4tu"></div>
+        <div class="graphcenter" id="datasetsAddedOverTimeGraph-4tu"></div>
+        <div class="graphcenter" id="datasetsSubjectGraph-4tu"></div>
+        <div class="graphcenter" id="filesAddedGraph-4tu"></div>
+        <div class="graphcenter" id="filesDownloadGraph-4tu"></div>
+    </script>
+    <script type="text/ng-template" id="pages/dans.html">
+        <h2 align="center">{{message}}</h2>
+        <div class="graphcenter" id="dataversesAllGraph-dans"></div>
+        <div class="graphcenter" id="dataversesByCategoryGraph-dans"></div>
+        <div class="graphcenter" id="dataversesAddedOverTimeGraph-dans"></div>
+        <div class="graphcenter" id="datasetsAllGraph-dans"></div>
+        <div class="graphcenter" id="datasetsAddedOverTimeGraph-dans"></div>
+        <div class="graphcenter" id="datasetsSubjectGraph-dans"></div>
+        <div class="graphcenter" id="filesAddedGraph-dans"></div>
+        <div class="graphcenter" id="filesDownloadGraph-dans"></div>
+    </script>
+    <script type="text/ng-template" id="pages/HU.html">
+        <h2 align="center">{{message}}</h2>
+        <div class="graphcenter" id="dataversesAllGraph-HU"></div>
+        <div class="graphcenter" id="dataversesByCategoryGraph-HU"></div>
+        <div class="graphcenter" id="dataversesAddedOverTimeGraph-HU"></div>
+        <div class="graphcenter" id="datasetsAllGraph-HU"></div>
+        <div class="graphcenter" id="datasetsAddedOverTimeGraph-HU"></div>
+        <div class="graphcenter" id="datasetsSubjectGraph-HU"></div>
+        <div class="graphcenter" id="filesAddedGraph-HU"></div>
+        <div class="graphcenter" id="filesDownloadGraph-HU"></div>
+    </script>
+    <script type="text/ng-template" id="pages/leidenuniversity.html">
+        <h2 align="center">{{message}}</h2>
+        <div class="graphcenter" id="dataversesAllGraph-leidenuniversity"></div>
+        <div class="graphcenter" id="dataversesByCategoryGraph-leidenuniversity"></div>
+        <div class="graphcenter" id="dataversesAddedOverTimeGraph-leidenuniversity"></div>
+        <div class="graphcenter" id="datasetsAllGraph-leidenuniversity"></div>
+        <div class="graphcenter" id="datasetsAddedOverTimeGraph-leidenuniversity"></div>
+        <div class="graphcenter" id="datasetsSubjectGraph-leidenuniversity"></div>
+        <div class="graphcenter" id="filesAddedGraph-leidenuniversity"></div>
+        <div class="graphcenter" id="filesDownloadGraph-leidenuniversity"></div>
+    </script>
+    <script type="text/ng-template" id="pages/maastricht.html">
+        <h2 align="center">{{message}}</h2>
+        <div class="graphcenter" id="dataversesAllGraph-maastricht"></div>
+        <div class="graphcenter" id="dataversesByCategoryGraph-maastricht"></div>
+        <div class="graphcenter" id="dataversesAddedOverTimeGraph-maastricht"></div>
+        <div class="graphcenter" id="datasetsAllGraph-maastricht"></div>
+        <div class="graphcenter" id="datasetsAddedOverTimeGraph-maastricht"></div>
+        <div class="graphcenter" id="datasetsSubjectGraph-maastricht"></div>
+        <div class="graphcenter" id="filesAddedGraph-maastricht"></div>
+        <div class="graphcenter" id="filesDownloadGraph-maastricht"></div>
+    </script>
+    <script type="text/ng-template" id="pages/niooknaw.html">
+        <h2 align="center">{{message}}</h2>
+        <div class="graphcenter" id="dataversesAllGraph-niooknaw"></div>
+        <div class="graphcenter" id="dataversesByCategoryGraph-niooknaw"></div>
+        <div class="graphcenter" id="dataversesAddedOverTimeGraph-niooknaw"></div>
+        <div class="graphcenter" id="datasetsAllGraph-niooknaw"></div>
+        <div class="graphcenter" id="datasetsAddedOverTimeGraph-niooknaw"></div>
+        <div class="graphcenter" id="datasetsSubjectGraph-niooknaw"></div>
+        <div class="graphcenter" id="filesAddedGraph-niooknaw"></div>
+        <div class="graphcenter" id="filesDownloadGraph-niooknaw"></div>
+    </script>
+    <script type="text/ng-template" id="pages/PTHU.html">
+        <h2 align="center">{{message}}</h2>
+        <div class="graphcenter" id="dataversesAllGraph-PTHU"></div>
+        <div class="graphcenter" id="dataversesByCategoryGraph-PTHU"></div>
+        <div class="graphcenter" id="dataversesAddedOverTimeGraph-PTHU"></div>
+        <div class="graphcenter" id="datasetsAllGraph-PTHU"></div>
+        <div class="graphcenter" id="datasetsAddedOverTimeGraph-PTHU"></div>
+        <div class="graphcenter" id="datasetsSubjectGraph-PTHU"></div>
+        <div class="graphcenter" id="filesAddedGraph-PTHU"></div>
+        <div class="graphcenter" id="filesDownloadGraph-PTHU"></div>
+    </script>
+    <script type="text/ng-template" id="pages/tiu.html">
+        <h2 align="center">{{message}}</h2>
+        <div class="graphcenter" id="dataversesAllGraph-tiu"></div>
+        <div class="graphcenter" id="dataversesByCategoryGraph-tiu"></div>
+        <div class="graphcenter" id="dataversesAddedOverTimeGraph-tiu"></div>
+        <div class="graphcenter" id="datasetsAllGraph-tiu"></div>
+        <div class="graphcenter" id="datasetsAddedOverTimeGraph-tiu"></div>
+        <div class="graphcenter" id="datasetsSubjectGraph-tiu"></div>
+        <div class="graphcenter" id="filesAddedGraph-tiu"></div>
+        <div class="graphcenter" id="filesDownloadGraph-tiu"></div>
+    </script>
+    <script type="text/ng-template" id="pages/tilburg_nondsa.html">
+        <h2 align="center">{{message}}</h2>
+        <div class="graphcenter" id="dataversesAllGraph-tilburg_nondsa"></div>
+        <div class="graphcenter" id="dataversesByCategoryGraph-tilburg_nondsa"></div>
+        <div class="graphcenter" id="dataversesAddedOverTimeGraph-tilburg_nondsa"></div>
+        <div class="graphcenter" id="datasetsAllGraph-tilburg_nondsa"></div>
+        <div class="graphcenter" id="datasetsAddedOverTimeGraph-tilburg_nondsa"></div>
+        <div class="graphcenter" id="datasetsSubjectGraph-tilburg_nondsa"></div>
+        <div class="graphcenter" id="filesAddedGraph-tilburg_nondsa"></div>
+        <div class="graphcenter" id="filesDownloadGraph-tilburg_nondsa"></div>
+    </script>
+    <script type="text/ng-template" id="pages/groningen.html">
+        <h2 align="center">{{message}}</h2>
+        <div class="graphcenter" id="dataversesAllGraph-groningen"></div>
+        <div class="graphcenter" id="dataversesByCategoryGraph-groningen"></div>
+        <div class="graphcenter" id="dataversesAddedOverTimeGraph-groningen"></div>
+        <div class="graphcenter" id="datasetsAllGraph-groningen"></div>
+        <div class="graphcenter" id="datasetsAddedOverTimeGraph-groningen"></div>
+        <div class="graphcenter" id="datasetsSubjectGraph-groningen"></div>
+        <div class="graphcenter" id="filesAddedGraph-groningen"></div>
+        <div class="graphcenter" id="filesDownloadGraph-groningen"></div>
+    </script>
+    <script type="text/ng-template" id="pages/UU.html">
+        <h2 align="center">{{message}}</h2>
+        <div class="graphcenter" id="dataversesAllGraph-UU"></div>
+        <div class="graphcenter" id="dataversesByCategoryGraph-UU"></div>
+        <div class="graphcenter" id="dataversesAddedOverTimeGraph-UU"></div>
+        <div class="graphcenter" id="datasetsAllGraph-UU"></div>
+        <div class="graphcenter" id="datasetsAddedOverTimeGraph-UU"></div>
+        <div class="graphcenter" id="datasetsSubjectGraph-UU"></div>
+        <div class="graphcenter" id="filesAddedGraph-UU"></div>
+        <div class="graphcenter" id="filesDownloadGraph-UU"></div>
+    </script>
+    <script type="text/ng-template" id="pages/vuamsterdam.html">
+        <h2 align="center">{{message}}</h2>
+        <div class="graphcenter" id="dataversesAllGraph-vuamsterdam"></div>
+        <div class="graphcenter" id="dataversesByCategoryGraph-vuamsterdam"></div>
+        <div class="graphcenter" id="dataversesAddedOverTimeGraph-vuamsterdam"></div>
+        <div class="graphcenter" id="datasetsAllGraph-vuamsterdam"></div>
+        <div class="graphcenter" id="datasetsAddedOverTimeGraph-vuamsterdam"></div>
+        <div class="graphcenter" id="datasetsSubjectGraph-vuamsterdam"></div>
+        <div class="graphcenter" id="filesAddedGraph-vuamsterdam"></div>
+        <div class="graphcenter" id="filesDownloadGraph-vuamsterdam"></div>
+    </script>
+    <script type="text/ng-template" id="pages/trimbos.html">
+        <h2 align="center">{{message}}</h2>
+        <div class="graphcenter" id="dataversesAllGraph-trimbos"></div>
+        <div class="graphcenter" id="dataversesByCategoryGraph-trimbos"></div>
+        <div class="graphcenter" id="dataversesAddedOverTimeGraph-trimbos"></div>
+        <div class="graphcenter" id="datasetsAllGraph-trimbos"></div>
+        <div class="graphcenter" id="datasetsAddedOverTimeGraph-trimbos"></div>
+        <div class="graphcenter" id="datasetsSubjectGraph-trimbos"></div>
+        <div class="graphcenter" id="filesAddedGraph-trimbos"></div>
+        <div class="graphcenter" id="filesDownloadGraph-trimbos"></div>
+    </script>
+    <script type="text/ng-template" id="pages/nioz.html">
+        <h2 align="center">{{message}}</h2>
+        <div class="graphcenter" id="dataversesAllGraph-nioz"></div>
+        <div class="graphcenter" id="dataversesByCategoryGraph-nioz"></div>
+        <div class="graphcenter" id="dataversesAddedOverTimeGraph-nioz"></div>
+        <div class="graphcenter" id="datasetsAllGraph-nioz"></div>
+        <div class="graphcenter" id="datasetsAddedOverTimeGraph-nioz"></div>
+        <div class="graphcenter" id="datasetsSubjectGraph-nioz"></div>
+        <div class="graphcenter" id="filesAddedGraph-nioz"></div>
+        <div class="graphcenter" id="filesDownloadGraph-nioz"></div>
+    </script>
+</div>
+<script>
+var baseurl = "DATAVERSE_BASE_URL";
+var hdl_prefix = "HANDLE_PREFIX";
+
+var institutions = [{ "dvAlias": "4tu,WSDVNR,Asoltani,its4land-wp1,ITS4land,testboudewijn2", "name": "4TU.Center for Research Data" }, { "dvAlias": "dans,danslabs,AvansHogeschool,erasmus", "name": "DANS" },
+{ "dvAlias": "HU", "name": "Hogeschool Utrecht" }, { "dvAlias": "leidenuniversity", "name": "Leiden University" },
+{ "dvAlias": "maastricht,DVNUB,MeyerPhDEmpirical", "name": "Maastricht University" }, { "dvAlias": "niooknaw", "name": "NIOO-KNAW" },
+{ "dvAlias": "PTHU", "name": "Protestantse Theologische Universiteit" }, { "dvAlias": "tiu", "name": "Tilburg University" },
+{ "dvAlias": "tilburg_nondsa", "name": "Tilburg University" }, { "dvAlias": "groningen,micrela,RUGlibrary,foodsecurity_and_biotechnology_in_africa", "name": "University of Groningen" },
+{ "dvAlias": "UU,KIK,DVN-docs,jeroenbosman,tes_pronk", "name": "Utrecht University" }, { "dvAlias": "vuamsterdam", "name": "Vrije Universiteit Amsterdam" },
+{ "dvAlias": "trimbos", "name": "Trimbos Instituut" }, { "dvAlias": "nioz", "name": "NIOZ" }];
+var app = angular.module('myApp', ['ngRoute']);
+app.config(function($routeProvider) {
+    $routeProvider
+        .when('/', {
+            templateUrl: 'pages/home.html',
+            controller: 'Home'
+        })
+        .when('/4tu', {
+            templateUrl: 'pages/4tu.html',
+            controller: '4tu'
+        })
+        .when('/dans', {
+            templateUrl: 'pages/dans.html',
+            controller: 'dans'
+        })
+        .when('/HU', {
+            templateUrl: 'pages/HU.html',
+            controller: 'HU'
+        })
+        .when('/leidenuniversity', {
+            templateUrl: 'pages/leidenuniversity.html',
+            controller: 'leidenuniversity'
+        })
+        .when('/maastricht', {
+            templateUrl: 'pages/maastricht.html',
+            controller: 'maastricht'
+        })
+        .when('/niooknaw', {
+            templateUrl: 'pages/niooknaw.html',
+            controller: 'niooknaw'
+        })
+        .when('/PTHU', {
+            templateUrl: 'pages/PTHU.html',
+            controller: 'PTHU'
+        })
+        .when('/tiu', {
+            templateUrl: 'pages/tiu.html',
+            controller: 'tiu'
+        })
+        .when('/tilburg_nondsa', {
+            templateUrl: 'pages/tilburg_nondsa.html',
+            controller: 'tilburg_nondsa'
+        })
+        .when('/groningen', {
+            templateUrl: 'pages/groningen.html',
+            controller: 'groningen'
+        })
+        .when('/UU', {
+            templateUrl: 'pages/UU.html',
+            controller: 'UU'
+        })
+        .when('/vuamsterdam', {
+            templateUrl: 'pages/vuamsterdam.html',
+            controller: 'vuamsterdam'
+        })
+        .when('/trimbos', {
+            templateUrl: 'pages/trimbos.html',
+            controller: 'trimbos'
+        })
+        .when('/nioz', {
+            templateUrl: 'pages/nioz.html',
+            controller: 'nioz'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
+});
+
+function displayGraph(dvAlias, sufficDiv) {
+   if (!sufficDiv) { sufficDiv = dvAlias;}
+   displayPieGraph(sufficDiv, baseurl, "-dans/" + dvAlias + "/dataverses", "#dataversesAllGraph-" + sufficDiv, "Total Dataverses");
+   displayTreeMapGraph(sufficDiv, baseurl, "-dans/" + dvAlias + "/dataverses/byCategory", "#dataversesByCategoryGraph-" + sufficDiv, "category", "Dataverses by Category");
+   displayBarGraph(sufficDiv, baseurl, "-dans/" + dvAlias + "/dataverses/addedOverTime  ", "#dataversesAddedOverTimeGraph-" + sufficDiv, "year", "created", "Dataverses Added Over Time");
+   displayPieGraph(sufficDiv, baseurl, "-dans/" + dvAlias + "/datasets", "#datasetsAllGraph-" + sufficDiv, "Total Datasets")
+   displayBarGraph(sufficDiv, baseurl, "-dans/" + dvAlias + "/datasets/addedOverTime", "#datasetsAddedOverTimeGraph-" + sufficDiv, "quarter", "created", "Datasets Added Over Time");
+   displayTreeMapGraph(sufficDiv, baseurl, "-dans/" + dvAlias+ "/datasets/bySubject", "#datasetsSubjectGraph-" + sufficDiv, "subject", "Dataset by Subject");
+   displayBarGraph(sufficDiv, baseurl, "-dans/" + dvAlias + "/files", "#filesAddedGraph-" + sufficDiv, "quarter", "added", "Files Added Over Time");
+   displayBarGraph(sufficDiv, baseurl, "-dans/" + dvAlias + "/downloads", "#filesDownloadGraph-" + sufficDiv, "quarter", "download", "Number of File Downloads");
+}
+
+app.controller('Home', function($scope) {
+    $scope.message = "All Institutions";
+    var allDvAliases = institutions.map(function(val) { return val.dvAlias;}).join(",");
+    displayGraph("root", "root");
+});
+app.controller('4tu', function($scope) {
+    $scope.message = institutions[0].name;
+    displayGraph(institutions[0].dvAlias, "4tu");
+});
+app.controller('dans', function($scope) {
+    $scope.message = institutions[1].name;
+    displayGraph(institutions[1].dvAlias,"dans");
+});
+app.controller('HU', function($scope) {
+    $scope.message = institutions[2].name;
+    displayGraph(institutions[2].dvAlias);
+});
+app.controller('leidenuniversity', function($scope) {
+    $scope.message = institutions[3].name;
+    displayGraph(institutions[3].dvAlias);
+});
+app.controller('maastricht', function($scope) {
+    $scope.message = institutions[4].name;
+    displayGraph(institutions[4].dvAlias, "maastricht");
+});
+app.controller('niooknaw', function($scope) {
+    $scope.message = institutions[5].name;
+    displayGraph(institutions[5].dvAlias);
+});
+app.controller('PTHU', function($scope) {
+    $scope.message = institutions[6].name;
+    displayGraph(institutions[6].dvAlias);
+});
+app.controller('tiu', function($scope) {
+    $scope.message = institutions[7].name;
+    displayGraph(institutions[7].dvAlias);
+});
+app.controller('tilburg_nondsa', function($scope) {
+    $scope.message = institutions[8].name;
+    displayGraph(institutions[8].dvAlias);
+});
+app.controller('groningen', function($scope) {
+    $scope.message = institutions[9].name;
+    displayGraph(institutions[9].dvAlias,"groningen");
+});
+app.controller('UU', function($scope) {
+    $scope.message = institutions[10].name;
+    displayGraph(institutions[10].dvAlias, "UU");
+});
+app.controller('vuamsterdam', function($scope) {
+    $scope.message = institutions[11].name;
+    displayGraph(institutions[11].dvAlias);
+});
+app.controller('trimbos', function($scope) {
+    $scope.message = institutions[12].name;
+    displayGraph(institutions[12].dvAlias);
+});
+app.controller('nioz', function($scope) {
+    $scope.message = institutions[13].name;
+    displayGraph(institutions[13].dvAlias);
+});
+
+function displayTreeMapGraph(institution, baseurl, apiname, divId, id, title) {
+    d3.json(baseurl + "/api/info/metrics" + apiname.replace(/_/g, '\+'), function(metrics) {
+        if (metrics != null) {
+        var visualization = d3plus.viz()
+                .container(divId)
+                .data(metrics.data)
+                .type("tree_map")
+                .id(id)
+                .size("count")
+                .title(title)
+                .labels({
+                    "align": "left",
+                    "valign": "top"
+                })
+                .tooltip({"stacked":true,
+                        "html" : function(d) {
+                                },
+                        "font": {size:"auto"},
+                        "background": "#9cedfc"}
+                )
+                .ui([
+                  {
+                    "method": function(){
+                      visualization.csv(true); // passing no values will download data as csv file
+                    },
+                    "value": ["Download as CSV (" + institution + " - " + title + ")"]
+                  }
+                ])
+                .height(300)
+                .width(600)
+                .draw()
+        }
+    });
+}
+
+function displayPieGraph(institution, baseurl, apiname, divId, title) {
+    d3.json(baseurl + "/api/info/metrics" + apiname.replace(/_/g, '\+'), function(metrics) {
+        if (metrics != null) {
+         var visualization = d3plus.viz()
+                .container(divId)
+                .data(metrics.data)
+                .type("pie")
+                .id("state")
+                .size("count")
+                .title(title)
+                .ui([
+                  {
+                    "method": function(){
+                      visualization.csv(true); // passing no values will download data as csv file
+                    },
+                    "value": ["Download as CSV (" + institution + " - " + title + ")"]
+                  }
+                ])
+                .tooltip({"stacked":true,
+                        "html" : function(d) {
+                                    for (let i=0; i<metrics.data.length; i++) {
+                                        if(metrics.data[i].state==d) {
+                                            if (!metrics.data[i].name.includes(hdl_prefix)) {
+
+                                                 if (metrics.data[i].name.length == 0) return "";//don't display when empty
+
+                                                  var k=0;
+                                                var abc = "<table><tr><td></td><td><b>Name</b></td><td><b>Alias</b></td><td><b>Category</b></td></tr>";
+                                                 metrics.data[i].name.split("|").forEach(function(element) {
+                                                   k++;
+                                                   var def = element.split("#");
+                                                  abc +=  '<tr><td><i><small>' + k + '</small></i></td><td><a href="' + baseurl + '/dataverse/' + def[1] + '" target="_blank">' + def[0] + '</a></td>'
+                                                      + '<td><a href="' + baseurl + '/metrics/dataverse_tree.html?alias=' + def[1] + '&name=' + def[0] + '" target="_blank">' + def[1] + '</a></td><td>' + def[2] + '</td></tr>';
+                                                });
+                                                abc+="</table>";
+                                                return abc;
+                                            }
+                                            var urls = metrics.data[i].name.split("|");
+                                            var links = "<table><tr><td></td><td><center><b>Identifier</b></center></td><td><center><b>Number of files</b></center></td><td><center><b>Total Size</b></center></td></tr>";
+                                            var k=0;
+                                            urls.forEach(function(element) {
+                                              k++;
+                                              var els = element.split("-");
+                                              var url = '<tr><td><i><small>' + k + '</small></i></td><td><center><a href="https://hdl.handle.net/' + els[0] + '" target="_blank">' + els[0] +'</a></center></td><td><center>' + els[1] + '</center></td><td><center>' + formatBytes(els[2]) + '</center></td></tr>';
+                                              links+=url;
+                                            });
+                                            links+="</table>";
+                                            return links;
+                                        }
+                                    }
+                                    return metrics.data;
+                                },
+                        "font": {size:"auto"},
+                        "large": 400,
+                        "background": "#9cedfc"}
+                )
+                .height(500)
+                .width(600)
+                .draw();
+        }
+    });
+}
+
+function displayBarGraph(institution, baseurl, apiname, divId, idx, idy, title) {
+    d3.json(baseurl + "/api/info/metrics" + apiname.replace(/_/g, '\+'), function(metrics) {
+        if (metrics != null) {
+        var visualization = d3plus.viz()
+            .container(divId)
+            .data(metrics.data)
+            .type("bar")
+            .id(idx)
+            .x(idx)
+            .y(idy)
+            .title(title)
+            .tooltip({"stacked":true,
+                        "html" : function(d) {
+                                    if (d.toString().includes("Q")){
+                                        var links="";
+                                        for (let i = 0; i < metrics.data.length; i++){
+                                            if (metrics.data[i].quarter==d){
+                                                if (metrics.data[i].created) {
+                                                    var k=0;
+                                                    var urls = metrics.data[i].pids.split("|");
+                                                    urls.forEach(function(element) {
+                                                      k++;
+                                                      var url = '<i><small>' + k + '</small></i> <a href="https://hdl.handle.net/' + element + '" target="_blank">' + element +'</a><br/>';
+                                                      links+=url;
+                                                    });
+                                                    return links;
+                                                } else if (metrics.data[i].added) {
+                                                    return formatBytes(metrics.data[i].size);
+                                                } else if (metrics.data[i].download) {
+                                                    var description = "Total download size: " + formatBytes(metrics.data[i].size) + "<br/><table><tr><td><b><center>Identifier</center></b></td><td><center><b>Number of<br/>downloads</b></center></td><td><center><b>Size</b></center></td></tr>";
+                                                    metrics.data[i].desc.split("#").forEach(function(element) {
+                                                      var els = element.split("-");
+                                                      description+= '<tr><td><a href="https://hdl.handle.net/' + els[0] + '" target="_blank">' + els[0] +'</a></td><td><center>' + els[1] + '</center></td><td><center>' + formatBytes(els[2]) + '</center></td></tr>';
+                                                      });
+                                                    description+="</table>";
+                                                    return description;
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        for (let i = 0; i < metrics.data.length; i++){
+                                            if (metrics.data[i].year==d){
+                                                var k=0;
+                                                var abc = "<table><tr><td></td><td><b>Name</b></td><td><b>Alias</b></td><td><b>Category</b></td></tr>";
+                                                metrics.data[i].aliases.split("|").forEach(function(element) {
+                                                    k++;
+                                                   var def = element.split("#");
+                                                  abc +=  '<tr><td><i><small>' + k + '</small></i></td><td><a href="' + baseurl + '/dataverse/' + def[1] + '" target="_blank">' + def[0] + '</a></td>'
+                                                      + '<td><a href="' + baseurl + '/metrics/dataverse_tree.html?alias=' + def[1] + '&name=' + def[0] + '" target="_blank">' + def[1] + '</a></td><td>' + def[2] + '</td></tr>';
+                                                });
+                                                abc+="</table>";
+                                                return abc;
+                                            }
+                                        }
+                                    }
+                                },
+                        "font": {size:"auto"},
+                        "large": 400,
+                        "background": "#9cedfc"}
+                )
+            .ui([
+              {
+                "method": function(){
+                  visualization.csv(true); // passing no values will download data as csv file
+                },
+                "value": ["Download as CSV (" + institution + " - " + title + ")"]
+              }
+            ])
+            .height(400)
+            .width(800)
+            .draw();
+        }
+    });
+}
+
+function formatBytes(bytes) {
+    if(bytes < 1024) return bytes + " Bytes";
+    else if(bytes < 1048576) return(bytes / 1024).toFixed(3) + " KB";
+    else if(bytes < 1073741824) return(bytes / 1048576).toFixed(3) + " MB";
+    else return(bytes / 1073741824).toFixed(3) + " GB";
+};
+
+var wb = XLSX.utils.book_new();
+        wb.Props = {
+                Title: "DataverseNL metrics",
+                Subject: "Metrics",
+                Author: "DANS",
+                CreatedDate: new Date()
+        };
+
+$.ajax({ 
+    url: baseurl + "/api/info/metrics-dans/root/dataverses-report", 
+    dataType: 'json', 
+    async: false, 
+    success: function(json){ 
+        //Process data retrieved
+
+        wb.SheetNames.push("Dataverses");
+        var ws_data = [["Name", "Alias", "Path", "Create Date", "Status", "Category", "Number of Datasets", "Number of Files", "Total Storage"]];
+
+        json.data.forEach(function(element) {
+            var wd = [element.name, element.alias, element.path, element.createDate, element.status, element.category, element.numberOfDatasets, element.numberOfFiles, formatBytes(element.totalStorage)];
+            ws_data.push(wd);
+            });
+        var ws = XLSX.utils.aoa_to_sheet(ws_data);
+        wb.Sheets["Dataverses"] = ws;
+
+        var ws = XLSX.utils.aoa_to_sheet(ws_data);
+        wb.Sheets["Dataverses"] = ws;
+
+    } 
+});
+
+$.ajax({ 
+    url: baseurl + "/api/info/metrics-dans/root/datasets-report", 
+    dataType: 'json', 
+    async: false, 
+    success: function(json){ 
+        //Process data retrieved
+
+        wb.SheetNames.push("Datasets");
+        var ws_data = [["Dataverse Name", "Dataverse Alias", "Path", "Dataset Identifier", "Create Date", "Status", "Number of Files", "Storage Size", "Total Downlads"]];
+
+        json.data.forEach(function(element) {
+            var wd = [element.dvName, element.dvAlias, element.dvPath, element.pid, element.createDate, element.status, element.numberOfFiles, formatBytes(element.storageSize), element.totalDownloads];
+            ws_data.push(wd);
+            });
+        var ws = XLSX.utils.aoa_to_sheet(ws_data);
+        wb.Sheets["Datasets"] = ws;
+        var ws = XLSX.utils.aoa_to_sheet(ws_data);
+        wb.Sheets["Datasets"] = ws;
+
+    } 
+});
+
+var wbout = XLSX.write(wb, {bookType:'xlsx',  type: 'binary'});
+
+function s2ab(s) {
+    var buf = new ArrayBuffer(s.length);
+    var view = new Uint8Array(buf);
+    for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+    return buf;
+}
+
+$("#button-a").click(function(){
+    var todayDate = new Date().toISOString().slice(0,10);
+    saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'DataverseNLMetrics-' + todayDate +'.xlsx');
+});
+</script>
+</body>
+</html>
