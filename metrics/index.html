@@ -1,7 +1,13 @@
 <!doctype html>
 <html ng-app="myApp">
-<head>
+<head profile="http://www.w3.org/2005/10/profile">
+    <link rel="icon"
+          type="image/png"
+          href="https://dataverse.nl/resources/images/DataversNL-logo.png">
     <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="js/angular.min.js"></script>
@@ -53,8 +59,8 @@
         <br/>
         <br/>
         <br/>
-        <button id="button-a" class="btn btn-primary btn-lg btn-block">Download Excel</button>
-        <a class="btn btn-primary btn-lg btn-block" href="dataverse_tree.html?alias=root&name=DataverseNL" role="button">Dataverse hierarchy</a>
+        <!--        <button id="button-a" class="btn btn-primary btn-lg btn-block">Download Excel</button>-->
+        <a class="btn btn-primary btn-lg btn-block" href="dataverse_tree.html?alias=root&name=DataverseNL" target="_blank" role="button">Dataverse hierarchy</a>
     </nav>
     <div id="content">
         <div ng-view></div>
@@ -69,6 +75,12 @@
         <div class="graphcenter" id="datasetsSubjectGraph-root"></div>
         <div class="graphcenter" id="filesAddedGraph-root"></div>
         <div class="graphcenter" id="filesDownloadGraph-root"></div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-all">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) Excel
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/4tu.html">
         <h2 align="center">{{message}}</h2>
@@ -80,6 +92,12 @@
         <div class="graphcenter" id="datasetsSubjectGraph-4tu"></div>
         <div class="graphcenter" id="filesAddedGraph-4tu"></div>
         <div class="graphcenter" id="filesDownloadGraph-4tu"></div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-4tu">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/dans.html">
         <h2 align="center">{{message}}</h2>
@@ -91,6 +109,12 @@
         <div class="graphcenter" id="datasetsSubjectGraph-dans"></div>
         <div class="graphcenter" id="filesAddedGraph-dans"></div>
         <div class="graphcenter" id="filesDownloadGraph-dans"></div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-dans">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/HU.html">
         <h2 align="center">{{message}}</h2>
@@ -102,6 +126,12 @@
         <div class="graphcenter" id="datasetsSubjectGraph-HU"></div>
         <div class="graphcenter" id="filesAddedGraph-HU"></div>
         <div class="graphcenter" id="filesDownloadGraph-HU"></div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-HU">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/leidenuniversity.html">
         <h2 align="center">{{message}}</h2>
@@ -113,6 +143,12 @@
         <div class="graphcenter" id="datasetsSubjectGraph-leidenuniversity"></div>
         <div class="graphcenter" id="filesAddedGraph-leidenuniversity"></div>
         <div class="graphcenter" id="filesDownloadGraph-leidenuniversity"></div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-leidenuniversity">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/maastricht.html">
         <h2 align="center">{{message}}</h2>
@@ -124,6 +160,12 @@
         <div class="graphcenter" id="datasetsSubjectGraph-maastricht"></div>
         <div class="graphcenter" id="filesAddedGraph-maastricht"></div>
         <div class="graphcenter" id="filesDownloadGraph-maastricht"></div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-maastricht">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/niooknaw.html">
         <h2 align="center">{{message}}</h2>
@@ -135,6 +177,12 @@
         <div class="graphcenter" id="datasetsSubjectGraph-niooknaw"></div>
         <div class="graphcenter" id="filesAddedGraph-niooknaw"></div>
         <div class="graphcenter" id="filesDownloadGraph-niooknaw"></div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-niooknaw">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/PTHU.html">
         <h2 align="center">{{message}}</h2>
@@ -146,6 +194,12 @@
         <div class="graphcenter" id="datasetsSubjectGraph-PTHU"></div>
         <div class="graphcenter" id="filesAddedGraph-PTHU"></div>
         <div class="graphcenter" id="filesDownloadGraph-PTHU"></div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-PTHU">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/tiu.html">
         <h2 align="center">{{message}}</h2>
@@ -157,6 +211,12 @@
         <div class="graphcenter" id="datasetsSubjectGraph-tiu"></div>
         <div class="graphcenter" id="filesAddedGraph-tiu"></div>
         <div class="graphcenter" id="filesDownloadGraph-tiu"></div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-tiu">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/tilburg_nondsa.html">
         <h2 align="center">{{message}}</h2>
@@ -168,6 +228,12 @@
         <div class="graphcenter" id="datasetsSubjectGraph-tilburg_nondsa"></div>
         <div class="graphcenter" id="filesAddedGraph-tilburg_nondsa"></div>
         <div class="graphcenter" id="filesDownloadGraph-tilburg_nondsa"></div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-tilburg_nondsa">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/groningen.html">
         <h2 align="center">{{message}}</h2>
@@ -179,6 +245,12 @@
         <div class="graphcenter" id="datasetsSubjectGraph-groningen"></div>
         <div class="graphcenter" id="filesAddedGraph-groningen"></div>
         <div class="graphcenter" id="filesDownloadGraph-groningen"></div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-groningen">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/UU.html">
         <h2 align="center">{{message}}</h2>
@@ -190,6 +262,12 @@
         <div class="graphcenter" id="datasetsSubjectGraph-UU"></div>
         <div class="graphcenter" id="filesAddedGraph-UU"></div>
         <div class="graphcenter" id="filesDownloadGraph-UU"></div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-UU">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/vuamsterdam.html">
         <h2 align="center">{{message}}</h2>
@@ -201,6 +279,12 @@
         <div class="graphcenter" id="datasetsSubjectGraph-vuamsterdam"></div>
         <div class="graphcenter" id="filesAddedGraph-vuamsterdam"></div>
         <div class="graphcenter" id="filesDownloadGraph-vuamsterdam"></div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-vuamsterdam">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/trimbos.html">
         <h2 align="center">{{message}}</h2>
@@ -212,6 +296,12 @@
         <div class="graphcenter" id="datasetsSubjectGraph-trimbos"></div>
         <div class="graphcenter" id="filesAddedGraph-trimbos"></div>
         <div class="graphcenter" id="filesDownloadGraph-trimbos"></div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-trimbos">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/nioz.html">
         <h2 align="center">{{message}}</h2>
@@ -223,11 +313,17 @@
         <div class="graphcenter" id="datasetsSubjectGraph-nioz"></div>
         <div class="graphcenter" id="filesAddedGraph-nioz"></div>
         <div class="graphcenter" id="filesDownloadGraph-nioz"></div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-nioz">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
     </script>
 </div>
 <script>
-var baseurl = "DATAVERSE_BASE_URL";
-var hdl_prefix = "HANDLE_PREFIX";
+var baseurl = "http://ddvn.dans.knaw.nl:8080";//"DATAVERSE_BASE_URL";
+var hdl_prefix = "10411";//"HANDLE_PREFIX";
 
 var institutions = [{ "dvAlias": "4tu,WSDVNR,Asoltani,its4land-wp1,ITS4land,testboudewijn2", "name": "4TU.Center for Research Data" }, { "dvAlias": "dans,danslabs,AvansHogeschool,erasmus", "name": "DANS" },
 { "dvAlias": "HU", "name": "Hogeschool Utrecht" }, { "dvAlias": "leidenuniversity", "name": "Leiden University" },
@@ -320,62 +416,107 @@ app.controller('Home', function($scope) {
     $scope.message = "All Institutions";
     var allDvAliases = institutions.map(function(val) { return val.dvAlias;}).join(",");
     displayGraph("root", "root");
+    $("#button-all").click(function(){
+        downloadExcel(baseurl, "root", "All Institutions");
+    });
 });
 app.controller('4tu', function($scope) {
     $scope.message = institutions[0].name;
     displayGraph(institutions[0].dvAlias, "4tu");
+    $("#button-4tu").click(function(){
+        downloadExcel(baseurl, institutions[0].dvAlias, institutions[0].name);
+    });
 });
 app.controller('dans', function($scope) {
     $scope.message = institutions[1].name;
     displayGraph(institutions[1].dvAlias,"dans");
+    $("#button-dans").click(function(){
+        downloadExcel(baseurl, institutions[1].dvAlias, institutions[1].name);
+    });
 });
 app.controller('HU', function($scope) {
     $scope.message = institutions[2].name;
     displayGraph(institutions[2].dvAlias);
+    $("#button-HU").click(function(){
+        downloadExcel(baseurl, institutions[2].dvAlias, institutions[2].name);
+    });
 });
 app.controller('leidenuniversity', function($scope) {
     $scope.message = institutions[3].name;
     displayGraph(institutions[3].dvAlias);
+    $("#button-leidenuniversity").click(function(){
+        downloadExcel(baseurl, institutions[3].dvAlias, institutions[3].name);
+    });
 });
 app.controller('maastricht', function($scope) {
     $scope.message = institutions[4].name;
     displayGraph(institutions[4].dvAlias, "maastricht");
+    $("#button-maastricht").click(function(){
+        downloadExcel(baseurl, institutions[4].dvAlias, institutions[4].name);
+    });
 });
 app.controller('niooknaw', function($scope) {
     $scope.message = institutions[5].name;
     displayGraph(institutions[5].dvAlias);
+    $("#button-niooknaw").click(function(){
+        downloadExcel(baseurl, institutions[5].dvAlias, institutions[5].name);
+    });
 });
 app.controller('PTHU', function($scope) {
     $scope.message = institutions[6].name;
     displayGraph(institutions[6].dvAlias);
+    $("#button-PTHU").click(function(){
+        downloadExcel(baseurl, institutions[6].dvAlias, institutions[6].name);
+    });
 });
 app.controller('tiu', function($scope) {
     $scope.message = institutions[7].name;
     displayGraph(institutions[7].dvAlias);
+    $("#button-tiu").click(function(){
+        downloadExcel(baseurl, institutions[7].dvAlias, institutions[7].name);
+    });
 });
 app.controller('tilburg_nondsa', function($scope) {
     $scope.message = institutions[8].name;
     displayGraph(institutions[8].dvAlias);
+    $("#button-tilburg_nondsa").click(function(){
+        downloadExcel(baseurl, institutions[8].dvAlias, institutions[8].name);
+    });
 });
 app.controller('groningen', function($scope) {
     $scope.message = institutions[9].name;
     displayGraph(institutions[9].dvAlias,"groningen");
+    $("#button-groningen").click(function(){
+        downloadExcel(baseurl, institutions[9].dvAlias, institutions[9].name);
+    });
 });
 app.controller('UU', function($scope) {
     $scope.message = institutions[10].name;
     displayGraph(institutions[10].dvAlias, "UU");
+    $("#button-UU").click(function(){
+        downloadExcel(baseurl, institutions[10].dvAlias, institutions[10].name);
+    });
 });
 app.controller('vuamsterdam', function($scope) {
     $scope.message = institutions[11].name;
     displayGraph(institutions[11].dvAlias);
+    $("#button-vuamsterdam").click(function(){
+        downloadExcel(baseurl, institutions[11].dvAlias, institutions[11].name);
+    });
 });
 app.controller('trimbos', function($scope) {
     $scope.message = institutions[12].name;
     displayGraph(institutions[12].dvAlias);
+    $("#button-trimbos").click(function(){
+        downloadExcel(baseurl, institutions[12].dvAlias, institutions[12].name);
+    });
 });
 app.controller('nioz', function($scope) {
     $scope.message = institutions[13].name;
     displayGraph(institutions[13].dvAlias);
+    $("#button-nioz").click(function(){
+        downloadExcel(baseurl, institutions[13].dvAlias, institutions[13].name);
+    });
 });
 
 function displayTreeMapGraph(institution, baseurl, apiname, divId, id, title) {
@@ -440,15 +581,15 @@ function displayPieGraph(institution, baseurl, apiname, divId, title) {
                                                  if (metrics.data[i].name.length == 0) return "";//don't display when empty
 
                                                   var k=0;
-                                                var abc = "<table><tr><td></td><td><b>Name</b></td><td><b>Alias</b></td><td><b>Category</b></td></tr>";
+                                                var popupTable = "<table><tr><td></td><td><b>Name</b></td><td><b>Alias</b></td><td><b>Category</b></td></tr>";
                                                  metrics.data[i].name.split("|").forEach(function(element) {
                                                    k++;
                                                    var def = element.split("#");
-                                                  abc +=  '<tr><td><i><small>' + k + '</small></i></td><td><a href="' + baseurl + '/dataverse/' + def[1] + '" target="_blank">' + def[0] + '</a></td>'
+                                                  popupTable +=  '<tr><td><i><small>' + k + '</small></i></td><td><a href="' + baseurl + '/dataverse/' + def[1] + '" target="_blank">' + def[0] + '</a></td>'
                                                       + '<td><a href="' + baseurl + '/metrics/dataverse_tree.html?alias=' + def[1] + '&name=' + def[0] + '" target="_blank">' + def[1] + '</a></td><td>' + def[2] + '</td></tr>';
                                                 });
-                                                abc+="</table>";
-                                                return abc;
+                                                popupTable+="</table>";
+                                                return popupTable;
                                             }
                                             var urls = metrics.data[i].name.split("|");
                                             var links = "<table><tr><td></td><td><center><b>Identifier</b></center></td><td><center><b>Number of files</b></center></td><td><center><b>Total Size</b></center></td></tr>";
@@ -519,15 +660,15 @@ function displayBarGraph(institution, baseurl, apiname, divId, idx, idy, title) 
                                         for (let i = 0; i < metrics.data.length; i++){
                                             if (metrics.data[i].year==d){
                                                 var k=0;
-                                                var abc = "<table><tr><td></td><td><b>Name</b></td><td><b>Alias</b></td><td><b>Category</b></td></tr>";
+                                                var popupTable = "<table><tr><td></td><td><b>Name</b></td><td><b>Alias</b></td><td><b>Category</b></td></tr>";
                                                 metrics.data[i].aliases.split("|").forEach(function(element) {
                                                     k++;
                                                    var def = element.split("#");
-                                                  abc +=  '<tr><td><i><small>' + k + '</small></i></td><td><a href="' + baseurl + '/dataverse/' + def[1] + '" target="_blank">' + def[0] + '</a></td>'
+                                                  popupTable +=  '<tr><td><i><small>' + k + '</small></i></td><td><a href="' + baseurl + '/dataverse/' + def[1] + '" target="_blank">' + def[0] + '</a></td>'
                                                       + '<td><a href="' + baseurl + '/metrics/dataverse_tree.html?alias=' + def[1] + '&name=' + def[0] + '" target="_blank">' + def[1] + '</a></td><td>' + def[2] + '</td></tr>';
                                                 });
-                                                abc+="</table>";
-                                                return abc;
+                                                popupTable+="</table>";
+                                                return popupTable;
                                             }
                                         }
                                     }
@@ -558,6 +699,16 @@ function formatBytes(bytes) {
     else return(bytes / 1073741824).toFixed(3) + " GB";
 };
 
+
+function downloadExcel(baseurl, aliases, name){
+    var wb = createExcel(baseurl, aliases);
+    var wbout = XLSX.write(wb, {bookType:'xlsx',  type: 'binary'});
+    var todayDate = new Date().toISOString().slice(0,10);
+    saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'DataverseNLMetrics (' + name + ')-' + todayDate +'.xlsx');
+}
+
+function createExcel(baseurl, aliases){
+aliases =  aliases.replace(/_/g, '\+');
 var wb = XLSX.utils.book_new();
         wb.Props = {
                 Title: "DataverseNL metrics",
@@ -567,7 +718,7 @@ var wb = XLSX.utils.book_new();
         };
 
 $.ajax({ 
-    url: baseurl + "/api/info/metrics-dans/root/dataverses-report", 
+    url: baseurl + "/api/info/metrics-dans/" + aliases + "/dataverses-report", 
     dataType: 'json', 
     async: false, 
     success: function(json){ 
@@ -590,7 +741,7 @@ $.ajax({ 
 });
 
 $.ajax({ 
-    url: baseurl + "/api/info/metrics-dans/root/datasets-report", 
+    url: baseurl + "/api/info/metrics-dans/" + aliases + "/datasets-report", 
     dataType: 'json', 
     async: false, 
     success: function(json){ 
@@ -611,7 +762,8 @@ $.ajax({ 
     } 
 });
 
-var wbout = XLSX.write(wb, {bookType:'xlsx',  type: 'binary'});
+return wb;
+}
 
 function s2ab(s) {
     var buf = new ArrayBuffer(s.length);
@@ -619,11 +771,6 @@ function s2ab(s) {
     for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
     return buf;
 }
-
-$("#button-a").click(function(){
-    var todayDate = new Date().toISOString().slice(0,10);
-    saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'DataverseNLMetrics-' + todayDate +'.xlsx');
-});
 </script>
 </body>
 </html>
