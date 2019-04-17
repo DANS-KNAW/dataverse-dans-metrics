@@ -22,6 +22,9 @@
     <script src="js/d3-queue.min.js"></script>
     <script lang="javascript" src="js/xlsx.full.min.js"></script>
     <script src="js/FileSaver.min.js"></script>
+    <script src="js/html2pdf.bundle.min.js"></script>
+
+
 </head>
 <body style="background-color:#FFFFFF;!important;">
 <div class="wrapper">
@@ -66,6 +69,7 @@
         <div ng-view></div>
     </div>
     <script type="text/ng-template" id="pages/home.html">
+        <div id="section-all">
         <h2 align="center">{{message}}</h2>
         <div class="graphcenter" id="dataversesAllGraph-root"></div>
         <div class="graphcenter" id="dataversesByCategoryGraph-root"></div>
@@ -75,14 +79,22 @@
         <div class="graphcenter" id="datasetsSubjectGraph-root"></div>
         <div class="graphcenter" id="filesAddedGraph-root"></div>
         <div class="graphcenter" id="filesDownloadGraph-root"></div>
+        </div>
         <div class="graphcenter">
             <button class="btn btn-primary btn-lg" id="button-all">
                 <i class="fa fa-download"></i>
                 Download ({{message}}) Excel
             </button>
         </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-all">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/4tu.html">
+        <div id="section-4tu">
         <h2 align="center">{{message}}</h2>
         <div class="graphcenter" id="dataversesAllGraph-4tu"></div>
         <div class="graphcenter" id="dataversesByCategoryGraph-4tu"></div>
@@ -92,14 +104,22 @@
         <div class="graphcenter" id="datasetsSubjectGraph-4tu"></div>
         <div class="graphcenter" id="filesAddedGraph-4tu"></div>
         <div class="graphcenter" id="filesDownloadGraph-4tu"></div>
+        </div>
         <div class="graphcenter">
             <button class="btn btn-primary btn-lg" id="button-4tu">
                 <i class="fa fa-download"></i>
                 Download ({{ message }}) Excel
             </button>
         </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-4tu">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/dans.html">
+        <div id="section-dans">
         <h2 align="center">{{message}}</h2>
         <div class="graphcenter" id="dataversesAllGraph-dans"></div>
         <div class="graphcenter" id="dataversesByCategoryGraph-dans"></div>
@@ -109,14 +129,22 @@
         <div class="graphcenter" id="datasetsSubjectGraph-dans"></div>
         <div class="graphcenter" id="filesAddedGraph-dans"></div>
         <div class="graphcenter" id="filesDownloadGraph-dans"></div>
+        </div>
         <div class="graphcenter">
             <button class="btn btn-primary btn-lg" id="button-dans">
                 <i class="fa fa-download"></i>
                 Download ({{ message }}) Excel
             </button>
         </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-dans">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/HU.html">
+        <div id="section-HU">
         <h2 align="center">{{message}}</h2>
         <div class="graphcenter" id="dataversesAllGraph-HU"></div>
         <div class="graphcenter" id="dataversesByCategoryGraph-HU"></div>
@@ -126,14 +154,22 @@
         <div class="graphcenter" id="datasetsSubjectGraph-HU"></div>
         <div class="graphcenter" id="filesAddedGraph-HU"></div>
         <div class="graphcenter" id="filesDownloadGraph-HU"></div>
+        </div>
         <div class="graphcenter">
             <button class="btn btn-primary btn-lg" id="button-HU">
                 <i class="fa fa-download"></i>
                 Download ({{ message }}) Excel
             </button>
         </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-HU">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/leidenuniversity.html">
+        <div id="section-leidenuniversity">
         <h2 align="center">{{message}}</h2>
         <div class="graphcenter" id="dataversesAllGraph-leidenuniversity"></div>
         <div class="graphcenter" id="dataversesByCategoryGraph-leidenuniversity"></div>
@@ -143,14 +179,22 @@
         <div class="graphcenter" id="datasetsSubjectGraph-leidenuniversity"></div>
         <div class="graphcenter" id="filesAddedGraph-leidenuniversity"></div>
         <div class="graphcenter" id="filesDownloadGraph-leidenuniversity"></div>
+        </div>
         <div class="graphcenter">
             <button class="btn btn-primary btn-lg" id="button-leidenuniversity">
                 <i class="fa fa-download"></i>
                 Download ({{ message }}) Excel
             </button>
         </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-leidenuniversity">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/maastricht.html">
+        <div id="section-maastricht">
         <h2 align="center">{{message}}</h2>
         <div class="graphcenter" id="dataversesAllGraph-maastricht"></div>
         <div class="graphcenter" id="dataversesByCategoryGraph-maastricht"></div>
@@ -160,14 +204,22 @@
         <div class="graphcenter" id="datasetsSubjectGraph-maastricht"></div>
         <div class="graphcenter" id="filesAddedGraph-maastricht"></div>
         <div class="graphcenter" id="filesDownloadGraph-maastricht"></div>
+        </div>
         <div class="graphcenter">
             <button class="btn btn-primary btn-lg" id="button-maastricht">
                 <i class="fa fa-download"></i>
                 Download ({{ message }}) Excel
             </button>
         </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-maastricht">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/niooknaw.html">
+        <div id="section-niooknaw">
         <h2 align="center">{{message}}</h2>
         <div class="graphcenter" id="dataversesAllGraph-niooknaw"></div>
         <div class="graphcenter" id="dataversesByCategoryGraph-niooknaw"></div>
@@ -177,14 +229,22 @@
         <div class="graphcenter" id="datasetsSubjectGraph-niooknaw"></div>
         <div class="graphcenter" id="filesAddedGraph-niooknaw"></div>
         <div class="graphcenter" id="filesDownloadGraph-niooknaw"></div>
+        </div>
         <div class="graphcenter">
             <button class="btn btn-primary btn-lg" id="button-niooknaw">
                 <i class="fa fa-download"></i>
                 Download ({{ message }}) Excel
             </button>
         </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-niooknaw">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/PTHU.html">
+        <div id="section-PTHU">
         <h2 align="center">{{message}}</h2>
         <div class="graphcenter" id="dataversesAllGraph-PTHU"></div>
         <div class="graphcenter" id="dataversesByCategoryGraph-PTHU"></div>
@@ -194,14 +254,22 @@
         <div class="graphcenter" id="datasetsSubjectGraph-PTHU"></div>
         <div class="graphcenter" id="filesAddedGraph-PTHU"></div>
         <div class="graphcenter" id="filesDownloadGraph-PTHU"></div>
+        </div>
         <div class="graphcenter">
             <button class="btn btn-primary btn-lg" id="button-PTHU">
                 <i class="fa fa-download"></i>
                 Download ({{ message }}) Excel
             </button>
         </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-PTHU">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/tiu.html">
+        <div id="section-tiu">
         <h2 align="center">{{message}}</h2>
         <div class="graphcenter" id="dataversesAllGraph-tiu"></div>
         <div class="graphcenter" id="dataversesByCategoryGraph-tiu"></div>
@@ -211,14 +279,22 @@
         <div class="graphcenter" id="datasetsSubjectGraph-tiu"></div>
         <div class="graphcenter" id="filesAddedGraph-tiu"></div>
         <div class="graphcenter" id="filesDownloadGraph-tiu"></div>
+        </div>
         <div class="graphcenter">
             <button class="btn btn-primary btn-lg" id="button-tiu">
                 <i class="fa fa-download"></i>
                 Download ({{ message }}) Excel
             </button>
         </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-tiu">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/tilburg_nondsa.html">
+        <div id="section-tilburg_nondsa">
         <h2 align="center">{{message}}</h2>
         <div class="graphcenter" id="dataversesAllGraph-tilburg_nondsa"></div>
         <div class="graphcenter" id="dataversesByCategoryGraph-tilburg_nondsa"></div>
@@ -228,14 +304,22 @@
         <div class="graphcenter" id="datasetsSubjectGraph-tilburg_nondsa"></div>
         <div class="graphcenter" id="filesAddedGraph-tilburg_nondsa"></div>
         <div class="graphcenter" id="filesDownloadGraph-tilburg_nondsa"></div>
+        </div>
         <div class="graphcenter">
             <button class="btn btn-primary btn-lg" id="button-tilburg_nondsa">
                 <i class="fa fa-download"></i>
                 Download ({{ message }}) Excel
             </button>
         </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-tilburg_nondsa">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/groningen.html">
+        <div id="section-groningen">
         <h2 align="center">{{message}}</h2>
         <div class="graphcenter" id="dataversesAllGraph-groningen"></div>
         <div class="graphcenter" id="dataversesByCategoryGraph-groningen"></div>
@@ -245,14 +329,22 @@
         <div class="graphcenter" id="datasetsSubjectGraph-groningen"></div>
         <div class="graphcenter" id="filesAddedGraph-groningen"></div>
         <div class="graphcenter" id="filesDownloadGraph-groningen"></div>
+        </div>
         <div class="graphcenter">
             <button class="btn btn-primary btn-lg" id="button-groningen">
                 <i class="fa fa-download"></i>
                 Download ({{ message }}) Excel
             </button>
         </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-groningen">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/UU.html">
+        <div id="section-UU">
         <h2 align="center">{{message}}</h2>
         <div class="graphcenter" id="dataversesAllGraph-UU"></div>
         <div class="graphcenter" id="dataversesByCategoryGraph-UU"></div>
@@ -262,14 +354,22 @@
         <div class="graphcenter" id="datasetsSubjectGraph-UU"></div>
         <div class="graphcenter" id="filesAddedGraph-UU"></div>
         <div class="graphcenter" id="filesDownloadGraph-UU"></div>
+        </div>
         <div class="graphcenter">
             <button class="btn btn-primary btn-lg" id="button-UU">
                 <i class="fa fa-download"></i>
                 Download ({{ message }}) Excel
             </button>
         </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-UU">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/vuamsterdam.html">
+        <div id="section-vuamsterdam">
         <h2 align="center">{{message}}</h2>
         <div class="graphcenter" id="dataversesAllGraph-vuamsterdam"></div>
         <div class="graphcenter" id="dataversesByCategoryGraph-vuamsterdam"></div>
@@ -279,14 +379,22 @@
         <div class="graphcenter" id="datasetsSubjectGraph-vuamsterdam"></div>
         <div class="graphcenter" id="filesAddedGraph-vuamsterdam"></div>
         <div class="graphcenter" id="filesDownloadGraph-vuamsterdam"></div>
+        </div>
         <div class="graphcenter">
             <button class="btn btn-primary btn-lg" id="button-vuamsterdam">
                 <i class="fa fa-download"></i>
                 Download ({{ message }}) Excel
             </button>
         </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-vuamsterdam">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/trimbos.html">
+        <div id="section-trimbos">
         <h2 align="center">{{message}}</h2>
         <div class="graphcenter" id="dataversesAllGraph-trimbos"></div>
         <div class="graphcenter" id="dataversesByCategoryGraph-trimbos"></div>
@@ -296,14 +404,22 @@
         <div class="graphcenter" id="datasetsSubjectGraph-trimbos"></div>
         <div class="graphcenter" id="filesAddedGraph-trimbos"></div>
         <div class="graphcenter" id="filesDownloadGraph-trimbos"></div>
+        </div>
         <div class="graphcenter">
             <button class="btn btn-primary btn-lg" id="button-trimbos">
                 <i class="fa fa-download"></i>
                 Download ({{ message }}) Excel
             </button>
         </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-trimbos">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
     </script>
     <script type="text/ng-template" id="pages/nioz.html">
+        <div id="section-nioz">
         <h2 align="center">{{message}}</h2>
         <div class="graphcenter" id="dataversesAllGraph-nioz"></div>
         <div class="graphcenter" id="dataversesByCategoryGraph-nioz"></div>
@@ -313,10 +429,17 @@
         <div class="graphcenter" id="datasetsSubjectGraph-nioz"></div>
         <div class="graphcenter" id="filesAddedGraph-nioz"></div>
         <div class="graphcenter" id="filesDownloadGraph-nioz"></div>
+        </div>
         <div class="graphcenter">
             <button class="btn btn-primary btn-lg" id="button-nioz">
                 <i class="fa fa-download"></i>
                 Download ({{ message }}) Excel
+            </button>
+        </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-nioz">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
             </button>
         </div>
     </script>
@@ -407,7 +530,7 @@ function displayGraph(dvAlias, sufficDiv) {
    displayBarGraph(sufficDiv, baseurl, "-dans/" + dvAlias + "/dataverses/addedOverTime  ", "#dataversesAddedOverTimeGraph-" + sufficDiv, "year", "created", "Dataverses Added Over Time");
    displayPieGraph(sufficDiv, baseurl, "-dans/" + dvAlias + "/datasets", "#datasetsAllGraph-" + sufficDiv, "Total Datasets")
    displayBarGraph(sufficDiv, baseurl, "-dans/" + dvAlias + "/datasets/addedOverTime", "#datasetsAddedOverTimeGraph-" + sufficDiv, "quarter", "created", "Datasets Added Over Time");
-   displayTreeMapGraph(sufficDiv, baseurl, "-dans/" + dvAlias+ "/datasets/bySubject", "#datasetsSubjectGraph-" + sufficDiv, "subject", "Dataset by Subject");
+   displayTreeMapGraphForSubject(sufficDiv, baseurl, "-dans/" + dvAlias+ "/datasets/bySubject", "#datasetsSubjectGraph-" + sufficDiv, "subject", "Dataset by Subject");
    displayBarGraph(sufficDiv, baseurl, "-dans/" + dvAlias + "/files", "#filesAddedGraph-" + sufficDiv, "quarter", "added", "Files Added Over Time");
    displayBarGraph(sufficDiv, baseurl, "-dans/" + dvAlias + "/downloads", "#filesDownloadGraph-" + sufficDiv, "quarter", "download", "Number of File Downloads");
 }
@@ -419,12 +542,22 @@ app.controller('Home', function($scope) {
     $("#button-all").click(function(){
         downloadExcel(baseurl, "root", "All Institutions");
     });
+    $("#button-pdf-all").click(function(){
+        var element = document.getElementById('section-all');
+        var opt = configPdf('all institutions');
+        html2pdf().set(opt).from(element).save();
+    });
 });
 app.controller('4tu', function($scope) {
     $scope.message = institutions[0].name;
     displayGraph(institutions[0].dvAlias, "4tu");
     $("#button-4tu").click(function(){
         downloadExcel(baseurl, institutions[0].dvAlias, institutions[0].name);
+    });
+    $("#button-pdf-4tu").click(function(){
+        var element = document.getElementById('section-4tu');
+        var opt = configPdf(institutions[0].name);
+        html2pdf().set(opt).from(element).save();
     });
 });
 app.controller('dans', function($scope) {
@@ -433,12 +566,22 @@ app.controller('dans', function($scope) {
     $("#button-dans").click(function(){
         downloadExcel(baseurl, institutions[1].dvAlias, institutions[1].name);
     });
+    $("#button-pdf-dans").click(function(){
+        var element = document.getElementById('section-dans');
+        var opt = configPdf(institutions[1].name);
+        html2pdf().set(opt).from(element).save();
+    });
 });
 app.controller('HU', function($scope) {
     $scope.message = institutions[2].name;
     displayGraph(institutions[2].dvAlias);
     $("#button-HU").click(function(){
         downloadExcel(baseurl, institutions[2].dvAlias, institutions[2].name);
+    });
+    $("#button-pdf-HU").click(function(){
+        var element = document.getElementById('section-HU');
+        var opt = configPdf(institutions[2].name);
+        html2pdf().set(opt).from(element).save();
     });
 });
 app.controller('leidenuniversity', function($scope) {
@@ -447,12 +590,22 @@ app.controller('leidenuniversity', function($scope) {
     $("#button-leidenuniversity").click(function(){
         downloadExcel(baseurl, institutions[3].dvAlias, institutions[3].name);
     });
+    $("#button-pdf-leidenuniversity").click(function(){
+        var element = document.getElementById('section-leidenuniversity');
+        var opt = configPdf(nstitutions[3].name);
+        html2pdf().set(opt).from(element).save();
+    });
 });
 app.controller('maastricht', function($scope) {
     $scope.message = institutions[4].name;
     displayGraph(institutions[4].dvAlias, "maastricht");
     $("#button-maastricht").click(function(){
         downloadExcel(baseurl, institutions[4].dvAlias, institutions[4].name);
+    });
+    $("#button-pdf-maastricht").click(function(){
+        var element = document.getElementById('section-maastricht');
+        var opt = configPdf(institutions[4].name);
+        html2pdf().set(opt).from(element).save();
     });
 });
 app.controller('niooknaw', function($scope) {
@@ -461,12 +614,22 @@ app.controller('niooknaw', function($scope) {
     $("#button-niooknaw").click(function(){
         downloadExcel(baseurl, institutions[5].dvAlias, institutions[5].name);
     });
+    $("#button-pdf-niooknaw").click(function(){
+        var element = document.getElementById('section-niooknaw');
+        var opt = configPdf(institutions[5].name);
+        html2pdf().set(opt).from(element).save();
+    });
 });
 app.controller('PTHU', function($scope) {
     $scope.message = institutions[6].name;
     displayGraph(institutions[6].dvAlias);
     $("#button-PTHU").click(function(){
         downloadExcel(baseurl, institutions[6].dvAlias, institutions[6].name);
+    });
+    $("#button-pdf-PTHU").click(function(){
+        var element = document.getElementById('section-PTHU');
+        var opt = configPdf(institutions[6].name);
+        html2pdf().set(opt).from(element).save();
     });
 });
 app.controller('tiu', function($scope) {
@@ -475,12 +638,22 @@ app.controller('tiu', function($scope) {
     $("#button-tiu").click(function(){
         downloadExcel(baseurl, institutions[7].dvAlias, institutions[7].name);
     });
+    $("#button-pdf-tiu").click(function(){
+        var element = document.getElementById('section-tiu');
+        var opt = configPdf(institutions[7].name);
+        html2pdf().set(opt).from(element).save();
+    });
 });
 app.controller('tilburg_nondsa', function($scope) {
-    $scope.message = institutions[8].name;
+    $scope.message = institutions[8].name + ' - Workspace';
     displayGraph(institutions[8].dvAlias);
     $("#button-tilburg_nondsa").click(function(){
-        downloadExcel(baseurl, institutions[8].dvAlias, institutions[8].name);
+        downloadExcel(baseurl, institutions[8].dvAlias, institutions[8].name + ' - Workspace');
+    });
+    $("#button-pdf-tilburg_nondsa").click(function(){
+        var element = document.getElementById('section-tilburg_nondsa');
+        var opt = configPdf(institutions[8].name + ' - Workspace');
+        html2pdf().set(opt).from(element).save();
     });
 });
 app.controller('groningen', function($scope) {
@@ -489,12 +662,22 @@ app.controller('groningen', function($scope) {
     $("#button-groningen").click(function(){
         downloadExcel(baseurl, institutions[9].dvAlias, institutions[9].name);
     });
+    $("#button-pdf-groningen").click(function(){
+        var element = document.getElementById('section-groningen');
+        var opt = configPdf(institutions[9].name);
+        html2pdf().set(opt).from(element).save();
+    });
 });
 app.controller('UU', function($scope) {
     $scope.message = institutions[10].name;
     displayGraph(institutions[10].dvAlias, "UU");
     $("#button-UU").click(function(){
         downloadExcel(baseurl, institutions[10].dvAlias, institutions[10].name);
+    });
+    $("#button-pdf-UU").click(function(){
+        var element = document.getElementById('section-UU');
+        var opt = configPdf(institutions[10].name);
+        html2pdf().set(opt).from(element).save();
     });
 });
 app.controller('vuamsterdam', function($scope) {
@@ -503,6 +686,11 @@ app.controller('vuamsterdam', function($scope) {
     $("#button-vuamsterdam").click(function(){
         downloadExcel(baseurl, institutions[11].dvAlias, institutions[11].name);
     });
+    $("#button-pdf-vuamsterdam").click(function(){
+        var element = document.getElementById('section-vuamsterdam');
+        var opt = configPdf(institutions[11].name);
+        html2pdf().set(opt).from(element).save();
+    });
 });
 app.controller('trimbos', function($scope) {
     $scope.message = institutions[12].name;
@@ -510,12 +698,22 @@ app.controller('trimbos', function($scope) {
     $("#button-trimbos").click(function(){
         downloadExcel(baseurl, institutions[12].dvAlias, institutions[12].name);
     });
+    $("#button-pdf-trimbos").click(function(){
+        var element = document.getElementById('section-trimbos');
+        var opt = configPdf(institutions[12].name);
+        html2pdf().set(opt).from(element).save();
+    });
 });
 app.controller('nioz', function($scope) {
     $scope.message = institutions[13].name;
     displayGraph(institutions[13].dvAlias);
     $("#button-nioz").click(function(){
         downloadExcel(baseurl, institutions[13].dvAlias, institutions[13].name);
+    });
+    $("#button-pdf-nioz").click(function(){
+        var element = document.getElementById('section-nioz');
+        var opt = configPdf(institutions[13].name);
+        html2pdf().set(opt).from(element).save();
     });
 });
 
@@ -547,6 +745,32 @@ function displayTreeMapGraph(institution, baseurl, apiname, divId, id, title) {
                     "value": ["Download as CSV (" + institution + " - " + title + ")"]
                   }
                 ])
+                .height(300)
+                .width(600)
+                .draw()
+        }
+    });
+}
+function displayTreeMapGraphForSubject(institution, baseurl, apiname, divId, id, title) {
+    d3.json(baseurl + "/api/info/metrics" + apiname.replace(/_/g, '\+'), function(metrics) {
+        if (metrics != null) {
+        var visualization = d3plus.viz()
+                .container(divId)
+                .data(metrics.data)
+                .type("tree_map")
+                .id(id)
+                .size("count")
+                .title(title)
+                .labels({
+                    "align": "left",
+                    "valign": "top"
+                })
+                .tooltip({"stacked":true,
+                        "html" : function(d) {
+                                },
+                        "font": {size:"auto"},
+                        "background": "#9cedfc"}
+                )
                 .height(300)
                 .width(600)
                 .draw()
@@ -770,6 +994,20 @@ function s2ab(s) {
     var view = new Uint8Array(buf);
     for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
     return buf;
+}
+
+function configPdf(name){
+    var todayDate = new Date().toISOString().slice(0,10);
+    var filename = name + '-' + todayDate +'.pdf'
+    var opt = {
+          margin:       1,
+          filename:     filename,
+          image:        { type: 'jpeg', quality: 0.99 },
+          html2canvas:  { scale: 2 },
+          pagebreak: { mode: 'avoid-all', before: '#page2el' },
+          jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+    return opt;
 }
 </script>
 </body>
