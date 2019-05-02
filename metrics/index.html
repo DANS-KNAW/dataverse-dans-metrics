@@ -452,7 +452,7 @@ var institutions = [{ "dvAlias": "4tu,WSDVNR,Asoltani,its4land-wp1,ITS4land,test
 { "dvAlias": "HU", "name": "Hogeschool Utrecht" }, { "dvAlias": "leidenuniversity", "name": "Leiden University" },
 { "dvAlias": "maastricht,DVNUB,MeyerPhDEmpirical", "name": "Maastricht University" }, { "dvAlias": "niooknaw", "name": "NIOO-KNAW" },
 { "dvAlias": "PTHU", "name": "Protestantse Theologische Universiteit" }, { "dvAlias": "tiu", "name": "Tilburg University" },
-{ "dvAlias": "tilburg_nondsa", "name": "Tilburg University" }, { "dvAlias": "groningen,micrela,RUGlibrary,foodsecurity_and_biotechnology_in_africa", "name": "University of Groningen" },
+{ "dvAlias": "tilburg_nondsa", "name": "Tilburg University" }, { "dvAlias": "groningen,RUGlibrary,foodsecurity_and_biotechnology_in_africa", "name": "University of Groningen" },
 { "dvAlias": "UU,KIK,DVN-docs,jeroenbosman,tes_pronk", "name": "Utrecht University" }, { "dvAlias": "vuamsterdam", "name": "Vrije Universiteit Amsterdam" },
 { "dvAlias": "trimbos", "name": "Trimbos Instituut" }, { "dvAlias": "nioz", "name": "NIOZ" }];
 var app = angular.module('myApp', ['ngRoute']);
@@ -592,7 +592,7 @@ app.controller('leidenuniversity', function($scope) {
     });
     $("#button-pdf-leidenuniversity").click(function(){
         var element = document.getElementById('section-leidenuniversity');
-        var opt = configPdf(nstitutions[3].name);
+        var opt = configPdf(institutions[3].name);
         html2pdf().set(opt).from(element).save();
     });
 });
