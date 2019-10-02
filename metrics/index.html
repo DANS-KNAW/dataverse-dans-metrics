@@ -940,7 +940,6 @@ var wb = XLSX.utils.book_new();
                 Author: "DANS",
                 CreatedDate: new Date()
         };
-var totalStorageDataverse = 0;
 $.ajax({ 
     url: baseurl + "/api/info/metrics-dans/" + aliases + "/dataverses-report", 
     dataType: 'json', 
@@ -954,10 +953,7 @@ $.ajax({ 
         json.data.forEach(function(element) {
             var wd = [element.name, element.alias, element.path, element.createDate, element.status, element.category, element.numberOfDatasets, element.numberOfFiles, (element.totalStorage/1048576)];
             ws_data.push(wd);
-            totalStorageDataverse += element.totalStorage;
             });
-        var totalWd =["Total storage in MB",,,,,,,,(totalStorageDataverse/1048576)];
-        ws_data.push(totalWd);
         var ws = XLSX.utils.aoa_to_sheet(ws_data);
         wb.Sheets["Dataverses"] = ws;
 
