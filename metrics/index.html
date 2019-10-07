@@ -32,7 +32,6 @@
         <div ng-app="" ng-init='institutions=
         [{ "dvAlias": "4tu", "name": "4TU.Center for Research Data", "logo":"https://dataverse.nl/logos/674/4TU-logo.jpg" },
         { "dvAlias": "dans", "name": "DANS", "logo":"https://dataverse.nl/logos/686/dans.png" },
-        { "dvAlias": "HU", "name": "Hogeschool Utrecht", "logo":"https://dataverse.nl/logos/10417/HU%20Logo%204.jpg" },
         { "dvAlias": "leidenuniversity", "name": "Leiden University", "logo":"https://dataverse.nl/logos/11481/UL%20-%20Algemeen%20-%20RGB-Kleur.jpg" },
         { "dvAlias": "maastricht", "name": "Maastricht University", "logo":"https://dataverse.nl/logos/679/UM%20driehoeken_74x100.png" },
         { "dvAlias": "niooknaw", "name": "NIOO-KNAW", "logo":"https://dataverse.nl/logos/677/NIOOlogo.png" },
@@ -138,31 +137,6 @@
         </div>
         <div class="graphcenter">
             <button class="btn btn-primary btn-lg" id="button-pdf-dans">
-                <i class="fa fa-download"></i>
-                Download ({{message}}) PDF
-            </button>
-        </div>
-    </script>
-    <script type="text/ng-template" id="pages/HU.html">
-        <div id="section-HU">
-        <h2 align="center">{{message}}</h2>
-        <div class="graphcenter" id="dataversesAllGraph-HU"></div>
-        <div class="graphcenter" id="dataversesByCategoryGraph-HU"></div>
-        <div class="graphcenter" id="dataversesAddedOverTimeGraph-HU"></div>
-        <div class="graphcenter" id="datasetsAllGraph-HU"></div>
-        <div class="graphcenter" id="datasetsAddedOverTimeGraph-HU"></div>
-        <div class="graphcenter" id="datasetsSubjectGraph-HU"></div>
-        <div class="graphcenter" id="filesAddedGraph-HU"></div>
-        <div class="graphcenter" id="filesDownloadGraph-HU"></div>
-        </div>
-        <div class="graphcenter">
-            <button class="btn btn-primary btn-lg" id="button-HU">
-                <i class="fa fa-download"></i>
-                Download ({{ message }}) Excel
-            </button>
-        </div>
-        <div class="graphcenter">
-            <button class="btn btn-primary btn-lg" id="button-pdf-HU">
                 <i class="fa fa-download"></i>
                 Download ({{message}}) PDF
             </button>
@@ -449,7 +423,7 @@ var baseurl = "DATAVERSE_BASE_URL";
 var hdl_prefix = "HANDLE_PREFIX";
 
 var institutions = [{ "dvAlias": "4tu,WSDVNR,Asoltani,its4land-wp1,ITS4land,testboudewijn2", "name": "4TU.Center for Research Data" }, { "dvAlias": "dans,danslabs,AvansHogeschool,erasmus", "name": "DANS" },
-{ "dvAlias": "HU", "name": "Hogeschool Utrecht" }, { "dvAlias": "leidenuniversity", "name": "Leiden University" },
+{ "dvAlias": "leidenuniversity", "name": "Leiden University" },
 { "dvAlias": "maastricht,DVNUB,MeyerPhDEmpirical", "name": "Maastricht University" }, { "dvAlias": "niooknaw", "name": "NIOO-KNAW" },
 { "dvAlias": "PTHU", "name": "Protestantse Theologische Universiteit" }, { "dvAlias": "tiu", "name": "Tilburg University" },
 { "dvAlias": "tilburg_nondsa", "name": "Tilburg University" }, { "dvAlias": "groningen", "name": "University of Groningen" },
@@ -469,10 +443,6 @@ app.config(function($routeProvider) {
         .when('/dans', {
             templateUrl: 'pages/dans.html',
             controller: 'dans'
-        })
-        .when('/HU', {
-            templateUrl: 'pages/HU.html',
-            controller: 'HU'
         })
         .when('/leidenuniversity', {
             templateUrl: 'pages/leidenuniversity.html',
@@ -572,147 +542,135 @@ app.controller('dans', function($scope) {
         html2pdf().set(opt).from(element).save();
     });
 });
-app.controller('HU', function($scope) {
+app.controller('leidenuniversity', function($scope) {
     $scope.message = institutions[2].name;
     displayGraph(institutions[2].dvAlias);
-    $("#button-HU").click(function(){
+    $("#button-leidenuniversity").click(function(){
         downloadExcel(baseurl, institutions[2].dvAlias, institutions[2].name);
     });
-    $("#button-pdf-HU").click(function(){
-        var element = document.getElementById('section-HU');
+    $("#button-pdf-leidenuniversity").click(function(){
+        var element = document.getElementById('section-leidenuniversity');
         var opt = configPdf(institutions[2].name);
         html2pdf().set(opt).from(element).save();
     });
 });
-app.controller('leidenuniversity', function($scope) {
+app.controller('maastricht', function($scope) {
     $scope.message = institutions[3].name;
-    displayGraph(institutions[3].dvAlias);
-    $("#button-leidenuniversity").click(function(){
+    displayGraph(institutions[3].dvAlias, "maastricht");
+    $("#button-maastricht").click(function(){
         downloadExcel(baseurl, institutions[3].dvAlias, institutions[3].name);
     });
-    $("#button-pdf-leidenuniversity").click(function(){
-        var element = document.getElementById('section-leidenuniversity');
+    $("#button-pdf-maastricht").click(function(){
+        var element = document.getElementById('section-maastricht');
         var opt = configPdf(institutions[3].name);
         html2pdf().set(opt).from(element).save();
     });
 });
-app.controller('maastricht', function($scope) {
+app.controller('niooknaw', function($scope) {
     $scope.message = institutions[4].name;
-    displayGraph(institutions[4].dvAlias, "maastricht");
-    $("#button-maastricht").click(function(){
+    displayGraph(institutions[4].dvAlias);
+    $("#button-niooknaw").click(function(){
         downloadExcel(baseurl, institutions[4].dvAlias, institutions[4].name);
     });
-    $("#button-pdf-maastricht").click(function(){
-        var element = document.getElementById('section-maastricht');
+    $("#button-pdf-niooknaw").click(function(){
+        var element = document.getElementById('section-niooknaw');
         var opt = configPdf(institutions[4].name);
         html2pdf().set(opt).from(element).save();
     });
 });
-app.controller('niooknaw', function($scope) {
+app.controller('PTHU', function($scope) {
     $scope.message = institutions[5].name;
     displayGraph(institutions[5].dvAlias);
-    $("#button-niooknaw").click(function(){
+    $("#button-PTHU").click(function(){
         downloadExcel(baseurl, institutions[5].dvAlias, institutions[5].name);
     });
-    $("#button-pdf-niooknaw").click(function(){
-        var element = document.getElementById('section-niooknaw');
+    $("#button-pdf-PTHU").click(function(){
+        var element = document.getElementById('section-PTHU');
         var opt = configPdf(institutions[5].name);
         html2pdf().set(opt).from(element).save();
     });
 });
-app.controller('PTHU', function($scope) {
+app.controller('tiu', function($scope) {
     $scope.message = institutions[6].name;
     displayGraph(institutions[6].dvAlias);
-    $("#button-PTHU").click(function(){
+    $("#button-tiu").click(function(){
         downloadExcel(baseurl, institutions[6].dvAlias, institutions[6].name);
     });
-    $("#button-pdf-PTHU").click(function(){
-        var element = document.getElementById('section-PTHU');
+    $("#button-pdf-tiu").click(function(){
+        var element = document.getElementById('section-tiu');
         var opt = configPdf(institutions[6].name);
         html2pdf().set(opt).from(element).save();
     });
 });
-app.controller('tiu', function($scope) {
-    $scope.message = institutions[7].name;
-    displayGraph(institutions[7].dvAlias);
-    $("#button-tiu").click(function(){
-        downloadExcel(baseurl, institutions[7].dvAlias, institutions[7].name);
-    });
-    $("#button-pdf-tiu").click(function(){
-        var element = document.getElementById('section-tiu');
-        var opt = configPdf(institutions[7].name);
-        html2pdf().set(opt).from(element).save();
-    });
-});
 app.controller('tilburg_nondsa', function($scope) {
-    $scope.message = institutions[8].name + ' - Workspace';
-    displayGraph(institutions[8].dvAlias);
+    $scope.message = institutions[7].name + ' - Workspace';
+    displayGraph(institutions[7].dvAlias);
     $("#button-tilburg_nondsa").click(function(){
-        downloadExcel(baseurl, institutions[8].dvAlias, institutions[8].name + ' - Workspace');
+        downloadExcel(baseurl, institutions[7].dvAlias, institutions[7].name + ' - Workspace');
     });
     $("#button-pdf-tilburg_nondsa").click(function(){
         var element = document.getElementById('section-tilburg_nondsa');
-        var opt = configPdf(institutions[8].name + ' - Workspace');
+        var opt = configPdf(institutions[7].name + ' - Workspace');
         html2pdf().set(opt).from(element).save();
     });
 });
 app.controller('groningen', function($scope) {
-    $scope.message = institutions[9].name;
-    displayGraph(institutions[9].dvAlias,"groningen");
+    $scope.message = institutions[8].name;
+    displayGraph(institutions[8].dvAlias,"groningen");
     $("#button-groningen").click(function(){
-        downloadExcel(baseurl, institutions[9].dvAlias, institutions[9].name);
+        downloadExcel(baseurl, institutions[8].dvAlias, institutions[8].name);
     });
     $("#button-pdf-groningen").click(function(){
         var element = document.getElementById('section-groningen');
-        var opt = configPdf(institutions[9].name);
+        var opt = configPdf(institutions[8].name);
         html2pdf().set(opt).from(element).save();
     });
 });
 app.controller('UU', function($scope) {
-    $scope.message = institutions[10].name;
-    displayGraph(institutions[10].dvAlias, "UU");
+    $scope.message = institutions[9].name;
+    displayGraph(institutions[9].dvAlias, "UU");
     $("#button-UU").click(function(){
-        downloadExcel(baseurl, institutions[10].dvAlias, institutions[10].name);
+        downloadExcel(baseurl, institutions[9].dvAlias, institutions[9].name);
     });
     $("#button-pdf-UU").click(function(){
         var element = document.getElementById('section-UU');
-        var opt = configPdf(institutions[10].name);
+        var opt = configPdf(institutions[9].name);
         html2pdf().set(opt).from(element).save();
     });
 });
 app.controller('vuamsterdam', function($scope) {
-    $scope.message = institutions[11].name;
-    displayGraph(institutions[11].dvAlias);
+    $scope.message = institutions[10].name;
+    displayGraph(institutions[10].dvAlias);
     $("#button-vuamsterdam").click(function(){
-        downloadExcel(baseurl, institutions[11].dvAlias, institutions[11].name);
+        downloadExcel(baseurl, institutions[10].dvAlias, institutions[10].name);
     });
     $("#button-pdf-vuamsterdam").click(function(){
         var element = document.getElementById('section-vuamsterdam');
-        var opt = configPdf(institutions[11].name);
+        var opt = configPdf(institutions[10].name);
         html2pdf().set(opt).from(element).save();
     });
 });
 app.controller('trimbos', function($scope) {
-    $scope.message = institutions[12].name;
-    displayGraph(institutions[12].dvAlias);
+    $scope.message = institutions[11].name;
+    displayGraph(institutions[11].dvAlias);
     $("#button-trimbos").click(function(){
-        downloadExcel(baseurl, institutions[12].dvAlias, institutions[12].name);
+        downloadExcel(baseurl, institutions[11].dvAlias, institutions[11].name);
     });
     $("#button-pdf-trimbos").click(function(){
         var element = document.getElementById('section-trimbos');
-        var opt = configPdf(institutions[12].name);
+        var opt = configPdf(institutions[11].name);
         html2pdf().set(opt).from(element).save();
     });
 });
 app.controller('nioz', function($scope) {
-    $scope.message = institutions[13].name;
-    displayGraph(institutions[13].dvAlias);
+    $scope.message = institutions[12].name;
+    displayGraph(institutions[12].dvAlias);
     $("#button-nioz").click(function(){
-        downloadExcel(baseurl, institutions[13].dvAlias, institutions[13].name);
+        downloadExcel(baseurl, institutions[12].dvAlias, institutions[12].name);
     });
     $("#button-pdf-nioz").click(function(){
         var element = document.getElementById('section-nioz');
-        var opt = configPdf(institutions[13].name);
+        var opt = configPdf(institutions[12].name);
         html2pdf().set(opt).from(element).save();
     });
 });
