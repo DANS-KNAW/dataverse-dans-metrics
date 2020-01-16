@@ -419,8 +419,8 @@
     </script>
 </div>
 <script>
-var baseurl = "DATAVERSE_BASE_URL";
-var hdl_prefix = "HANDLE_PREFIX";
+var baseurl = "https://dataverse.nl";
+var hdl_prefix = "10411";
 
 var institutions = [{ "dvAlias": "4tu,WSDVNR,Asoltani,its4land-wp1,ITS4land,testboudewijn2", "name": "4TU.Center for Research Data" }, { "dvAlias": "dans,danslabs,AvansHogeschool,erasmus", "name": "DANS" },
 { "dvAlias": "leidenuniversity", "name": "Leiden University" },
@@ -965,7 +965,7 @@ function configPdf(name){
           image:        { type: 'jpeg', quality: 0.99 },
           html2canvas:  { scale: 2 },
           pagebreak: { mode: 'avoid-all', before: '#page2el' },
-          jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+          jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
         };
     return opt;
 }
