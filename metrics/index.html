@@ -929,10 +929,10 @@ $.ajax({ 
         //Process data retrieved
 
         wb.SheetNames.push("Datasets");
-        var ws_data = [["Dataverse Name", "Dataverse Alias", "Path", "Dataset Identifier", "Create Date", "Status", "Number of Files", "Storage Size in MB", "Total Downloads"]];
+        var ws_data = [["Dataverse Name", "Dataverse Alias", "Path", "Dataset Identifier", "Dataset Title", "Create Date", "Status", "Number of Files", "Storage Size in MB", "Total Downloads"]];
 
         json.data.forEach(function(element) {
-            var wd = [element.dvName, element.dvAlias, element.dvPath, element.pid, element.createDate, element.status, element.numberOfFiles, (element.storageSize/1048576), element.totalDownloads];
+            var wd = [element.dvName, element.dvAlias, element.dvPath, element.pid, element.dsTitle, element.createDate, element.status, element.numberOfFiles, (element.storageSize/1048576), element.totalDownloads];
             totalStorageDataset += element.storageSize;
             ws_data.push(wd);
             });
