@@ -420,7 +420,7 @@
 </div>
 <script>
 var baseurl = "DATAVERSE_BASE_URL";
-var hdl_prefix = "HANDLE_PREFIX";
+var doi_prefix = "DOI_PREFIX";
 
 var institutions = [{ "dvAlias": "4tu,WSDVNR,Asoltani,its4land-wp1,ITS4land,testboudewijn2", "name": "4TU.Center for Research Data" }, { "dvAlias": "dans,danslabs,AvansHogeschool,erasmus", "name": "DANS" },
 { "dvAlias": "leidenuniversity", "name": "Leiden University" },
@@ -758,7 +758,7 @@ function displayPieGraph(institution, baseurl, apiname, divId, title) {
                         "html" : function(d) {
                                     for (let i=0; i<metrics.data.length; i++) {
                                         if(metrics.data[i].state==d) {
-                                            if (!metrics.data[i].name.includes(hdl_prefix)) {
+                                            if (!metrics.data[i].name.includes(doi_prefix)) {
 
                                                  if (metrics.data[i].name.length == 0) return "";//don't display when empty
 
@@ -779,7 +779,7 @@ function displayPieGraph(institution, baseurl, apiname, divId, title) {
                                             urls.forEach(function(element) {
                                               k++;
                                               var els = element.split("-");
-                                              var url = '<tr><td><i><small>' + k + '</small></i></td><td><center><a href="https://hdl.handle.net/' + els[0] + '" target="_blank">' + els[0] +'</a></center></td><td><center>' + els[1] + '</center></td><td><center>' + formatBytes(els[2]) + '</center></td></tr>';
+                                              var url = '<tr><td><i><small>' + k + '</small></i></td><td><center><a href="https://doi.org/' + els[0] + '" target="_blank">' + els[0] +'</a></center></td><td><center>' + els[1] + '</center></td><td><center>' + formatBytes(els[2]) + '</center></td></tr>';
                                               links+=url;
                                             });
                                             links+="</table>";
@@ -821,7 +821,7 @@ function displayBarGraph(institution, baseurl, apiname, divId, idx, idy, title) 
                                                     var urls = metrics.data[i].pids.split("|");
                                                     urls.forEach(function(element) {
                                                       k++;
-                                                      var url = '<i><small>' + k + '</small></i> <a href="https://hdl.handle.net/' + element + '" target="_blank">' + element +'</a><br/>';
+                                                      var url = '<i><small>' + k + '</small></i> <a href="https://doi.org/' + element + '" target="_blank">' + element +'</a><br/>';
                                                       links+=url;
                                                     });
                                                     return links;
@@ -831,7 +831,7 @@ function displayBarGraph(institution, baseurl, apiname, divId, idx, idy, title) 
                                                     var description = "Total download size: " + formatBytes(metrics.data[i].size) + "<br/><table><tr><td><b><center>Identifier</center></b></td><td><center><b>Number of<br/>downloads</b></center></td><td><center><b>Size</b></center></td></tr>";
                                                     metrics.data[i].desc.split("#").forEach(function(element) {
                                                       var els = element.split("-");
-                                                      description+= '<tr><td><a href="https://hdl.handle.net/' + els[0] + '" target="_blank">' + els[0] +'</a></td><td><center>' + els[1] + '</center></td><td><center>' + formatBytes(els[2]) + '</center></td></tr>';
+                                                      description+= '<tr><td><a href="https://doi.org/' + els[0] + '" target="_blank">' + els[0] +'</a></td><td><center>' + els[1] + '</center></td><td><center>' + formatBytes(els[2]) + '</center></td></tr>';
                                                       });
                                                     description+="</table>";
                                                     return description;
@@ -929,10 +929,10 @@ $.ajax({ 
         //Process data retrieved
 
         wb.SheetNames.push("Datasets");
-        var ws_data = [["Dataverse Name", "Dataverse Alias", "Path", "Dataset Identifier", "Create Date", "Status", "Number of Files", "Storage Size in MB", "Total Downloads"]];
+        var ws_data = [["Dataverse Name", "Dataverse Alias", "Path", "Dataset Identifier", "Dataset Title", "Create Date", "Status", "Number of Files", "Storage Size in MB", "Total Downloads"]];
 
         json.data.forEach(function(element) {
-            var wd = [element.dvName, element.dvAlias, element.dvPath, element.pid, element.createDate, element.status, element.numberOfFiles, (element.storageSize/1048576), element.totalDownloads];
+            var wd = [element.dvName, element.dvAlias, element.dvPath, element.pid, element.dsTitle, element.createDate, element.status, element.numberOfFiles, (element.storageSize/1048576), element.totalDownloads];
             totalStorageDataset += element.storageSize;
             ws_data.push(wd);
             });
