@@ -906,10 +906,10 @@ $.ajax({ 
         //Process data retrieved
 
         wb.SheetNames.push("Dataverses");
-        var ws_data = [["Name", "Alias", "Path", "Create Date", "Status", "Category", "Number of Datasets", "Number of Files", "Total Storage in MB"]];
+        var ws_data = [["Name", "Alias", "Path", "Create Date", "Status", "Category", "Number of Datasets", "Number of Files", "Total Storage in GB"]];
 
         json.data.forEach(function(element) {
-            var wd = [element.name, element.alias, element.path, element.createDate, element.status, element.category, element.numberOfDatasets, element.numberOfFiles, (element.totalStorage/1048576)];
+            var wd = [element.name, element.alias, element.path, element.createDate, element.status, element.category, element.numberOfDatasets, element.numberOfFiles, (element.totalStorage/1073741824)];
             ws_data.push(wd);
             });
         var ws = XLSX.utils.aoa_to_sheet(ws_data);
@@ -929,14 +929,14 @@ $.ajax({ 
         //Process data retrieved
 
         wb.SheetNames.push("Datasets");
-        var ws_data = [["Dataverse Name", "Dataverse Alias", "Path", "Dataset Identifier", "Dataset Title", "Create Date", "Status", "Number of Files", "Storage Size in MB", "Total Downloads"]];
+        var ws_data = [["Dataverse Name", "Dataverse Alias", "Path", "Dataset Identifier", "Dataset Title", "Create Date", "Status", "Number of Files", "Storage Size in GB", "Total Downloads"]];
 
         json.data.forEach(function(element) {
-            var wd = [element.dvName, element.dvAlias, element.dvPath, element.pid, element.dsTitle, element.createDate, element.status, element.numberOfFiles, (element.storageSize/1048576), element.totalDownloads];
+            var wd = [element.dvName, element.dvAlias, element.dvPath, element.pid, element.dsTitle, element.createDate, element.status, element.numberOfFiles, (element.storageSize/1073741824), element.totalDownloads];
             totalStorageDataset += element.storageSize;
             ws_data.push(wd);
             });
-        var totalWd =["Total storage in MB",,,,,,,(totalStorageDataset/1048576)];
+        var totalWd =["Total storage in GB",,,,,,,(totalStorageDataset/1073741824)];
         ws_data.push(totalWd);
         var ws = XLSX.utils.aoa_to_sheet(ws_data);
         wb.Sheets["Datasets"] = ws;
