@@ -936,7 +936,7 @@ $.ajax({ 
             totalStorageDataset += element.storageSize;
             ws_data.push(wd);
             });
-        var totalWd =["Total storage in GB",,,,,,,(totalStorageDataset/1073741824)];
+        var totalWd =["Total storage in GB",,,,,,,,(totalStorageDataset/1073741824)];
         ws_data.push(totalWd);
         var ws = XLSX.utils.aoa_to_sheet(ws_data);
         wb.Sheets["Datasets"] = ws;
