@@ -42,7 +42,8 @@
         { "dvAlias": "UU", "name": "Utrecht University", "logo":"https://dataverse.nl/logos/695/UU_logo_EN_CMYK.png" },
         { "dvAlias": "vuamsterdam", "name": "Vrije Universiteit Amsterdam", "logo":"https://dataverse.nl/logos/672/VUlogo_NL.png" },
         { "dvAlias": "trimbos", "name": "Trimbos Instituut", "logo":"https://cf.e-vision.nl/static/trimbos/trimbos.nl/media/images/logo-timbos-wit.png" },
-        { "dvAlias": "nioz", "name": "NIOZ", "logo":"https://www.nioz.nl/application/files/2814/7740/6142/nioz-logo.svg" }]
+        { "dvAlias": "nioz", "name": "NIOZ", "logo":"https://www.nioz.nl/application/files/2814/7740/6142/nioz-logo.svg" },
+        { "dvAlias": "fontys", "name": "Fontys Hogescholen", "logo":"https://dataverse.nl/logos/94267/Fontys%20Logo.jpg" }]
         '>
             <ul class="list-unstyled components" style="font-size:0.9em;!important">
                 <a href="https://dataverse.nl"><center><img style="padding-bottom: 20px;" src="https://dataverse.nl/resources/images/DataversNL-logo.png" height="60%" width="60%"></center></a>
@@ -417,6 +418,31 @@
             </button>
         </div>
     </script>
+    <script type="text/ng-template" id="pages/fontys.html">
+        <div id="section-fontys">
+            <h2 align="center">{{message}}</h2>
+            <div class="graphcenter" id="dataversesAllGraph-fontys"></div>
+            <div class="graphcenter" id="dataversesByCategoryGraph-fontys"></div>
+            <div class="graphcenter" id="dataversesAddedOverTimeGraph-fontys"></div>
+            <div class="graphcenter" id="datasetsAllGraph-fontys"></div>
+            <div class="graphcenter" id="datasetsAddedOverTimeGraph-fontys"></div>
+            <div class="graphcenter" id="datasetsSubjectGraph-fontys"></div>
+            <div class="graphcenter" id="filesAddedGraph-fontys"></div>
+            <div class="graphcenter" id="filesDownloadGraph-fontys"></div>
+        </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-fontys">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-fontys">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
+    </script>
 </div>
 <script>
 var baseurl = "DATAVERSE_BASE_URL";
@@ -428,7 +454,8 @@ var institutions = [{ "dvAlias": "4tu,WSDVNR,Asoltani,its4land-wp1,ITS4land,test
 { "dvAlias": "PTHU", "name": "Protestantse Theologische Universiteit" }, { "dvAlias": "tiu", "name": "Tilburg University" },
 { "dvAlias": "tilburg_nondsa", "name": "Tilburg University" }, { "dvAlias": "groningen", "name": "University of Groningen" },
 { "dvAlias": "UU", "name": "Utrecht University" }, { "dvAlias": "vuamsterdam", "name": "Vrije Universiteit Amsterdam" },
-{ "dvAlias": "trimbos", "name": "Trimbos Instituut" }, { "dvAlias": "nioz", "name": "NIOZ" }];
+{ "dvAlias": "trimbos", "name": "Trimbos Instituut" }, { "dvAlias": "nioz", "name": "NIOZ" },
+{ "dvAlias": "fontys", "name": "Fontys Hogescholen" }, { "dvAlias": "fontys", "name": "Fontys Hogescholen" }];
 var app = angular.module('myApp', ['ngRoute']);
 app.config(function($routeProvider) {
     $routeProvider
@@ -487,6 +514,10 @@ app.config(function($routeProvider) {
         .when('/nioz', {
             templateUrl: 'pages/nioz.html',
             controller: 'nioz'
+        })
+        .when('/fontys', {
+            templateUrl: 'pages/fontys.html',
+            controller: 'fontys'
         })
         .otherwise({
             redirectTo: '/'
@@ -674,7 +705,18 @@ app.controller('nioz', function($scope) {
         html2pdf().set(opt).from(element).save();
     });
 });
-
+app.controller('fontys', function($scope) {
+    $scope.message = institutions[13].name;
+    displayGraph(institutions[13].dvAlias);
+    $("#button-fontys").click(function(){
+        downloadExcel(baseurl, institutions[13].dvAlias, institutions[13].name);
+    });
+    $("#button-pdf-fontys").click(function(){
+        var element = document.getElementById('section-fontys');
+        var opt = configPdf(institutions[13].name);
+        html2pdf().set(opt).from(element).save();
+    });
+});
 function displayTreeMapGraph(institution, baseurl, apiname, divId, id, title) {
     d3.json(baseurl + "/api/info/metrics" + apiname.replace(/_/g, '\+'), function(metrics) {
         if (metrics != null) {
