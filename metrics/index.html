@@ -1055,9 +1055,6 @@ function displayPieGraph(institution, baseurl, apiname, divId, title) {
 }
 
 function displayBarGraph(institution, baseurl, apiname, divId, idx, idy, title) {
-    console.log("eko....");
-    var eko = baseurl + "/api/info/metrics" + apiname.replace(/_/g, '\+');
-    console.log(eko);
     d3.json(baseurl + "/api/info/metrics" + apiname.replace(/_/g, '\+'), function(metrics) {
         if (metrics != null) {
         var visualization = d3plus.viz()
