@@ -1,9 +1,10 @@
 <!doctype html>
 <html ng-app="myApp">
+<title>DataverseNL Metrics</title>
 <head profile="http://www.w3.org/2005/10/profile">
     <link rel="icon"
           type="image/png"
-          href="https://dataverse.nl/resources/images/DataversNL-logo.png">
+          href="https://dataverse.nl/assets/logos/DataverseNL-logo.png">
     <meta charset="utf-8">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
@@ -43,10 +44,15 @@
         { "dvAlias": "vuamsterdam", "name": "Vrije Universiteit Amsterdam", "logo":"https://dataverse.nl/logos/672/VUlogo_NL.png" },
         { "dvAlias": "trimbos", "name": "Trimbos Instituut", "logo":"https://cf.e-vision.nl/static/trimbos/trimbos.nl/media/images/logo-timbos-wit.png" },
         { "dvAlias": "nioz", "name": "NIOZ", "logo":"https://www.nioz.nl/application/files/2814/7740/6142/nioz-logo.svg" },
-        { "dvAlias": "fontys", "name": "Fontys Hogescholen", "logo":"https://dataverse.nl/logos/94267/Fontys%20Logo.jpg" }]
+        { "dvAlias": "fontys", "name": "Fontys Hogescholen", "logo":"https://dataverse.nl/logos/94267/Fontys%20Logo.jpg" },
+        { "dvAlias": "UMCU", "name": "University Medical Center Utrecht", "logo":"https://dataverse.nl/logos/100081/UMCU_2019_logo_liggend_small.png" },
+        { "dvAlias": "hanze", "name": "Hanzehogeschool Groningent", "logo":"https://dataverse.nl/logos/26834/HG%20nederlands%20-%20RGB%20-%20beeldmerk%20oranje,%20tekst%20zwart.png" },
+        { "dvAlias": "RCE", "name": "Rijksdienst voor het Cultureel Erfgoed", "logo":"https://dataverse.nl/logos/100102/OCW_RCE_Logo_online_ex_pos_nl.png" },
+        { "dvAlias": "AvansHogeschool", "name": "Avans Hogeschool", "logo":"https://dataverse.nl/logos/713/Avans.png" },
+        { "dvAlias": "hr", "name": "Hogeschool Rotterdam", "logo":"https://dataverse.nl/logos/27942/HogeschoolRotterdam.png" }]
         '>
             <ul class="list-unstyled components" style="font-size:0.9em;!important">
-                <a href="https://dataverse.nl"><center><img style="padding-bottom: 20px;" src="https://dataverse.nl/resources/images/DataversNL-logo.png" height="60%" width="60%"></center></a>
+                <a href="https://dataverse.nl"><center><img style="padding-bottom: 20px;" src="https://dataverse.nl/assets/logos/DataverseNL-logo.png" height="60%" width="60%"></center></a>
                 <li>
                     <a href="#/">All Institutions</a>
                 </li>
@@ -443,6 +449,131 @@
             </button>
         </div>
     </script>
+    <script type="text/ng-template" id="pages/UMCU.html">
+        <div id="section-UMCU">
+            <h2 align="center">{{message}}</h2>
+            <div class="graphcenter" id="dataversesAllGraph-UMCU"></div>
+            <div class="graphcenter" id="dataversesByCategoryGraph-UMCU"></div>
+            <div class="graphcenter" id="dataversesAddedOverTimeGraph-UMCU"></div>
+            <div class="graphcenter" id="datasetsAllGraph-UMCU"></div>
+            <div class="graphcenter" id="datasetsAddedOverTimeGraph-UMCU"></div>
+            <div class="graphcenter" id="datasetsSubjectGraph-UMCU"></div>
+            <div class="graphcenter" id="filesAddedGraph-UMCU"></div>
+            <div class="graphcenter" id="filesDownloadGraph-UMCU"></div>
+        </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-UMCU">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-UMCU">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="pages/hanze.html">
+        <div id="section-hanze">
+            <h2 align="center">{{message}}</h2>
+            <div class="graphcenter" id="dataversesAllGraph-hanze"></div>
+            <div class="graphcenter" id="dataversesByCategoryGraph-hanze"></div>
+            <div class="graphcenter" id="dataversesAddedOverTimeGraph-hanze"></div>
+            <div class="graphcenter" id="datasetsAllGraph-hanze"></div>
+            <div class="graphcenter" id="datasetsAddedOverTimeGraph-hanze"></div>
+            <div class="graphcenter" id="datasetsSubjectGraph-hanze"></div>
+            <div class="graphcenter" id="filesAddedGraph-hanze"></div>
+            <div class="graphcenter" id="filesDownloadGraph-hanze"></div>
+        </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-hanze">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-hanze">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="pages/RCE.html">
+        <div id="section-RCE">
+            <h2 align="center">{{message}}</h2>
+            <div class="graphcenter" id="dataversesAllGraph-RCE"></div>
+            <div class="graphcenter" id="dataversesByCategoryGraph-RCE"></div>
+            <div class="graphcenter" id="dataversesAddedOverTimeGraph-RCE"></div>
+            <div class="graphcenter" id="datasetsAllGraph-RCE"></div>
+            <div class="graphcenter" id="datasetsAddedOverTimeGraph-RCE"></div>
+            <div class="graphcenter" id="datasetsSubjectGraph-RCE"></div>
+            <div class="graphcenter" id="filesAddedGraph-RCE"></div>
+            <div class="graphcenter" id="filesDownloadGraph-RCE"></div>
+        </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-RCE">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-RCE">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="pages/AvansHogeschool.html">
+        <div id="section-AvansHogeschool">
+            <h2 align="center">{{message}}</h2>
+            <div class="graphcenter" id="dataversesAllGraph-AvansHogeschool"></div>
+            <div class="graphcenter" id="dataversesByCategoryGraph-AvansHogeschool"></div>
+            <div class="graphcenter" id="dataversesAddedOverTimeGraph-AvansHogeschool"></div>
+            <div class="graphcenter" id="datasetsAllGraph-AvansHogeschool"></div>
+            <div class="graphcenter" id="datasetsAddedOverTimeGraph-AvansHogeschool"></div>
+            <div class="graphcenter" id="datasetsSubjectGraph-AvansHogeschool"></div>
+            <div class="graphcenter" id="filesAddedGraph-AvansHogeschool"></div>
+            <div class="graphcenter" id="filesDownloadGraph-AvansHogeschool"></div>
+        </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-AvansHogeschool">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-AvansHogeschool">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="pages/hr.html">
+        <div id="section-hr">
+            <h2 align="center">{{message}}</h2>
+            <div class="graphcenter" id="dataversesAllGraph-hr"></div>
+            <div class="graphcenter" id="dataversesByCategoryGraph-hr"></div>
+            <div class="graphcenter" id="dataversesAddedOverTimeGraph-hr"></div>
+            <div class="graphcenter" id="datasetsAllGraph-hr"></div>
+            <div class="graphcenter" id="datasetsAddedOverTimeGraph-hr"></div>
+            <div class="graphcenter" id="datasetsSubjectGraph-hr"></div>
+            <div class="graphcenter" id="filesAddedGraph-hr"></div>
+            <div class="graphcenter" id="filesDownloadGraph-hr"></div>
+        </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-hr">
+                <i class="fa fa-download"></i>
+                Download ({{ message }}) Excel
+            </button>
+        </div>
+        <div class="graphcenter">
+            <button class="btn btn-primary btn-lg" id="button-pdf-hr">
+                <i class="fa fa-download"></i>
+                Download ({{message}}) PDF
+            </button>
+        </div>
+    </script>
 </div>
 <script>
 var baseurl = "DATAVERSE_BASE_URL";
@@ -455,7 +586,9 @@ var institutions = [{ "dvAlias": "4tu,WSDVNR,Asoltani,its4land-wp1,ITS4land,test
 { "dvAlias": "tilburg_nondsa", "name": "Tilburg University" }, { "dvAlias": "groningen", "name": "University of Groningen" },
 { "dvAlias": "UU", "name": "Utrecht University" }, { "dvAlias": "vuamsterdam", "name": "Vrije Universiteit Amsterdam" },
 { "dvAlias": "trimbos", "name": "Trimbos Instituut" }, { "dvAlias": "nioz", "name": "NIOZ" },
-{ "dvAlias": "fontys", "name": "Fontys Hogescholen" }, { "dvAlias": "fontys", "name": "Fontys Hogescholen" }];
+{ "dvAlias": "fontys", "name": "Fontys Hogescholen" }, { "dvAlias": "UMCU", "name": "University Medical Center Utrecht" },
+{ "dvAlias": "hanze", "name": "Hanzehogeschool Groningen" }, { "dvAlias": "RCE", "name": "Rijksdienst voor het Cultureel Erfgoed" },
+{ "dvAlias": "AvansHogeschool", "name": "Avans Hogeschool" }, { "dvAlias": "hr", "name": "Hogeschool Rotterdam" }];
 var app = angular.module('myApp', ['ngRoute']);
 app.config(function($routeProvider) {
     $routeProvider
@@ -518,6 +651,26 @@ app.config(function($routeProvider) {
         .when('/fontys', {
             templateUrl: 'pages/fontys.html',
             controller: 'fontys'
+        })
+        .when('/UMCU', {
+            templateUrl: 'pages/UMCU.html',
+            controller: 'UMCU'
+        })
+        .when('/hanze', {
+            templateUrl: 'pages/hanze.html',
+            controller: 'hanze'
+        })
+        .when('/RCE', {
+            templateUrl: 'pages/RCE.html',
+            controller: 'RCE'
+        })
+        .when('/AvansHogeschool', {
+            templateUrl: 'pages/AvansHogeschool.html',
+            controller: 'AvansHogeschool'
+        })
+        .when('/hr', {
+            templateUrl: 'pages/hr.html',
+            controller: 'hr'
         })
         .otherwise({
             redirectTo: '/'
@@ -714,6 +867,66 @@ app.controller('fontys', function($scope) {
     $("#button-pdf-fontys").click(function(){
         var element = document.getElementById('section-fontys');
         var opt = configPdf(institutions[13].name);
+        html2pdf().set(opt).from(element).save();
+    });
+});
+app.controller('UMCU', function($scope) {
+    $scope.message = institutions[14].name;
+    displayGraph(institutions[14].dvAlias);
+    $("#button-UMCU").click(function(){
+        downloadExcel(baseurl, institutions[14].dvAlias, institutions[14].name);
+    });
+    $("#button-pdf-UMCU").click(function(){
+        var element = document.getElementById('section-UMCU');
+        var opt = configPdf(institutions[14].name);
+        html2pdf().set(opt).from(element).save();
+    });
+});
+app.controller('hanze', function($scope) {
+    $scope.message = institutions[15].name;
+    displayGraph(institutions[15].dvAlias);
+    $("#button-hanze").click(function(){
+        downloadExcel(baseurl, institutions[15].dvAlias, institutions[15].name);
+    });
+    $("#button-pdf-hanze").click(function(){
+        var element = document.getElementById('section-hanze');
+        var opt = configPdf(institutions[15].name);
+        html2pdf().set(opt).from(element).save();
+    });
+});
+app.controller('RCE', function($scope) {
+    $scope.message = institutions[16].name;
+    displayGraph(institutions[16].dvAlias);
+    $("#button-RCE").click(function(){
+        downloadExcel(baseurl, institutions[16].dvAlias, institutions[16].name);
+    });
+    $("#button-pdf-RCE").click(function(){
+        var element = document.getElementById('section-RCE');
+        var opt = configPdf(institutions[16].name);
+        html2pdf().set(opt).from(element).save();
+    });
+});
+app.controller('AvansHogeschool', function($scope) {
+    $scope.message = institutions[17].name;
+    displayGraph(institutions[17].dvAlias);
+    $("#button-AvansHogeschool").click(function(){
+        downloadExcel(baseurl, institutions[17].dvAlias, institutions[17].name);
+    });
+    $("#button-pdf-AvansHogeschool").click(function(){
+        var element = document.getElementById('section-AvansHogeschool');
+        var opt = configPdf(institutions[17].name);
+        html2pdf().set(opt).from(element).save();
+    });
+});
+app.controller('hr', function($scope) {
+    $scope.message = institutions[18].name;
+    displayGraph(institutions[18].dvAlias);
+    $("#button-hr").click(function(){
+        downloadExcel(baseurl, institutions[18].dvAlias, institutions[18].name);
+    });
+    $("#button-pdf-hr").click(function(){
+        var element = document.getElementById('section-hr');
+        var opt = configPdf(institutions[18].name);
         html2pdf().set(opt).from(element).save();
     });
 });
