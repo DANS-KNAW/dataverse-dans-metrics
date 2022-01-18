@@ -43,7 +43,6 @@
         { "dvAlias": "UU", "name": "Utrecht University", "logo":"https://dataverse.nl/logos/695/UU_logo_EN_CMYK.png" },
         { "dvAlias": "vuamsterdam", "name": "Vrije Universiteit Amsterdam", "logo":"https://dataverse.nl/logos/672/VUlogo_NL.png" },
         { "dvAlias": "trimbos", "name": "Trimbos Instituut", "logo":"https://cf.e-vision.nl/static/trimbos/trimbos.nl/media/images/logo-timbos-wit.png" },
-        { "dvAlias": "nioz", "name": "NIOZ", "logo":"https://www.nioz.nl/application/files/2814/7740/6142/nioz-logo.svg" },
         { "dvAlias": "fontys", "name": "Fontys Hogescholen", "logo":"https://dataverse.nl/logos/94267/Fontys%20Logo.jpg" },
         { "dvAlias": "UMCU", "name": "University Medical Center Utrecht", "logo":"https://dataverse.nl/logos/100081/UMCU_2019_logo_liggend_small.png" },
         { "dvAlias": "hanze", "name": "Hanzehogeschool Groningen", "logo":"https://dataverse.nl/logos/26834/HG%20nederlands%20-%20RGB%20-%20beeldmerk%20oranje,%20tekst%20zwart.png" },
@@ -399,31 +398,6 @@
             </button>
         </div>
     </script>
-    <script type="text/ng-template" id="pages/nioz.html">
-        <div id="section-nioz">
-        <h2 align="center">{{message}}</h2>
-        <div class="graphcenter" id="dataversesAllGraph-nioz"></div>
-        <div class="graphcenter" id="dataversesByCategoryGraph-nioz"></div>
-        <div class="graphcenter" id="dataversesAddedOverTimeGraph-nioz"></div>
-        <div class="graphcenter" id="datasetsAllGraph-nioz"></div>
-        <div class="graphcenter" id="datasetsAddedOverTimeGraph-nioz"></div>
-        <div class="graphcenter" id="datasetsSubjectGraph-nioz"></div>
-        <div class="graphcenter" id="filesAddedGraph-nioz"></div>
-        <div class="graphcenter" id="filesDownloadGraph-nioz"></div>
-        </div>
-        <div class="graphcenter">
-            <button class="btn btn-primary btn-lg" id="button-nioz">
-                <i class="fa fa-download"></i>
-                Download ({{ message }}) Excel
-            </button>
-        </div>
-        <div class="graphcenter">
-            <button class="btn btn-primary btn-lg" id="button-pdf-nioz">
-                <i class="fa fa-download"></i>
-                Download ({{message}}) PDF
-            </button>
-        </div>
-    </script>
     <script type="text/ng-template" id="pages/fontys.html">
         <div id="section-fontys">
             <h2 align="center">{{message}}</h2>
@@ -585,7 +559,7 @@ var institutions = [{ "dvAlias": "4tu,WSDVNR,Asoltani,its4land-wp1,ITS4land,test
 { "dvAlias": "PTHU", "name": "Protestantse Theologische Universiteit" }, { "dvAlias": "tiu", "name": "Tilburg University" },
 { "dvAlias": "tilburg_nondsa", "name": "Tilburg University" }, { "dvAlias": "groningen", "name": "University of Groningen" },
 { "dvAlias": "UU", "name": "Utrecht University" }, { "dvAlias": "vuamsterdam", "name": "Vrije Universiteit Amsterdam" },
-{ "dvAlias": "trimbos", "name": "Trimbos Instituut" }, { "dvAlias": "nioz", "name": "NIOZ" },
+{ "dvAlias": "trimbos", "name": "Trimbos Instituut" }, 
 { "dvAlias": "fontys", "name": "Fontys Hogescholen" }, { "dvAlias": "UMCU", "name": "University Medical Center Utrecht" },
 { "dvAlias": "hanze", "name": "Hanzehogeschool Groningen" }, { "dvAlias": "RCE", "name": "Rijksdienst voor het Cultureel Erfgoed" },
 { "dvAlias": "AvansHogeschool", "name": "Avans Hogeschool" }, { "dvAlias": "hr", "name": "Hogeschool Rotterdam" }];
@@ -643,10 +617,6 @@ app.config(function($routeProvider) {
         .when('/trimbos', {
             templateUrl: 'pages/trimbos.html',
             controller: 'trimbos'
-        })
-        .when('/nioz', {
-            templateUrl: 'pages/nioz.html',
-            controller: 'nioz'
         })
         .when('/fontys', {
             templateUrl: 'pages/fontys.html',
@@ -843,18 +813,6 @@ app.controller('trimbos', function($scope) {
     $("#button-pdf-trimbos").click(function(){
         var element = document.getElementById('section-trimbos');
         var opt = configPdf(institutions[11].name);
-        html2pdf().set(opt).from(element).save();
-    });
-});
-app.controller('nioz', function($scope) {
-    $scope.message = institutions[12].name;
-    displayGraph(institutions[12].dvAlias);
-    $("#button-nioz").click(function(){
-        downloadExcel(baseurl, institutions[12].dvAlias, institutions[12].name);
-    });
-    $("#button-pdf-nioz").click(function(){
-        var element = document.getElementById('section-nioz');
-        var opt = configPdf(institutions[12].name);
         html2pdf().set(opt).from(element).save();
     });
 });
