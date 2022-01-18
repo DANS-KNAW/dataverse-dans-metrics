@@ -817,74 +817,74 @@ app.controller('trimbos', function($scope) {
     });
 });
 app.controller('fontys', function($scope) {
-    $scope.message = institutions[13].name;
-    displayGraph(institutions[13].dvAlias);
+    $scope.message = institutions[12].name;
+    displayGraph(institutions[12].dvAlias);
     $("#button-fontys").click(function(){
-        downloadExcel(baseurl, institutions[13].dvAlias, institutions[13].name);
+        downloadExcel(baseurl, institutions[12].dvAlias, institutions[12].name);
     });
     $("#button-pdf-fontys").click(function(){
         var element = document.getElementById('section-fontys');
-        var opt = configPdf(institutions[13].name);
+        var opt = configPdf(institutions[12].name);
         html2pdf().set(opt).from(element).save();
     });
 });
 app.controller('UMCU', function($scope) {
-    $scope.message = institutions[14].name;
-    displayGraph(institutions[14].dvAlias);
+    $scope.message = institutions[13].name;
+    displayGraph(institutions[13].dvAlias);
     $("#button-UMCU").click(function(){
-        downloadExcel(baseurl, institutions[14].dvAlias, institutions[14].name);
+        downloadExcel(baseurl, institutions[13].dvAlias, institutions[13].name);
     });
     $("#button-pdf-UMCU").click(function(){
         var element = document.getElementById('section-UMCU');
-        var opt = configPdf(institutions[14].name);
+        var opt = configPdf(institutions[13].name);
         html2pdf().set(opt).from(element).save();
     });
 });
 app.controller('hanze', function($scope) {
-    $scope.message = institutions[15].name;
-    displayGraph(institutions[15].dvAlias);
+    $scope.message = institutions[14].name;
+    displayGraph(institutions[14].dvAlias);
     $("#button-hanze").click(function(){
-        downloadExcel(baseurl, institutions[15].dvAlias, institutions[15].name);
+        downloadExcel(baseurl, institutions[14].dvAlias, institutions[14].name);
     });
     $("#button-pdf-hanze").click(function(){
         var element = document.getElementById('section-hanze');
-        var opt = configPdf(institutions[15].name);
+        var opt = configPdf(institutions[14].name);
         html2pdf().set(opt).from(element).save();
     });
 });
 app.controller('RCE', function($scope) {
-    $scope.message = institutions[16].name;
-    displayGraph(institutions[16].dvAlias);
+    $scope.message = institutions[15].name;
+    displayGraph(institutions[15].dvAlias);
     $("#button-RCE").click(function(){
-        downloadExcel(baseurl, institutions[16].dvAlias, institutions[16].name);
+        downloadExcel(baseurl, institutions[15].dvAlias, institutions[15].name);
     });
     $("#button-pdf-RCE").click(function(){
         var element = document.getElementById('section-RCE');
-        var opt = configPdf(institutions[16].name);
+        var opt = configPdf(institutions[15].name);
         html2pdf().set(opt).from(element).save();
     });
 });
 app.controller('AvansHogeschool', function($scope) {
-    $scope.message = institutions[17].name;
-    displayGraph(institutions[17].dvAlias);
+    $scope.message = institutions[16].name;
+    displayGraph(institutions[16].dvAlias);
     $("#button-AvansHogeschool").click(function(){
-        downloadExcel(baseurl, institutions[17].dvAlias, institutions[17].name);
+        downloadExcel(baseurl, institutions[16].dvAlias, institutions[16].name);
     });
     $("#button-pdf-AvansHogeschool").click(function(){
         var element = document.getElementById('section-AvansHogeschool');
-        var opt = configPdf(institutions[17].name);
+        var opt = configPdf(institutions[16].name);
         html2pdf().set(opt).from(element).save();
     });
 });
 app.controller('hr', function($scope) {
-    $scope.message = institutions[18].name;
-    displayGraph(institutions[18].dvAlias);
+    $scope.message = institutions[17].name;
+    displayGraph(institutions[17].dvAlias);
     $("#button-hr").click(function(){
-        downloadExcel(baseurl, institutions[18].dvAlias, institutions[18].name);
+        downloadExcel(baseurl, institutions[17].dvAlias, institutions[17].name);
     });
     $("#button-pdf-hr").click(function(){
         var element = document.getElementById('section-hr');
-        var opt = configPdf(institutions[18].name);
+        var opt = configPdf(institutions[17].name);
         html2pdf().set(opt).from(element).save();
     });
 });
